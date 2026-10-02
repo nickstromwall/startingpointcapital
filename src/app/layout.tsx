@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow_Condensed, Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,9 +9,21 @@ import { links, site } from "@/config/site";
 import "./globals.css";
 
 // Montserrat matches the current site and the logo tagline. Barlow Condensed echoes the condensed SPC wordmark.
+// Self hosted (src/fonts, latin subset from Google Fonts, OFL) so builds never depend on fetching fonts.
 // Swap for the brand guide fonts when they arrive (update --font-sans / --font-cond only).
-const sans = Montserrat({ variable: "--font-sans", subsets: ["latin"], weight: ["300", "400", "500", "600"], display: "swap" });
-const cond = Barlow_Condensed({ variable: "--font-cond", subsets: ["latin"], weight: ["500", "600"], display: "swap" });
+const sans = localFont({
+  variable: "--font-sans",
+  src: [{ path: "../fonts/montserrat-300-600-latin.woff2", weight: "300 600", style: "normal" }],
+  display: "swap",
+});
+const cond = localFont({
+  variable: "--font-cond",
+  src: [
+    { path: "../fonts/barlow-condensed-500-latin.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/barlow-condensed-600-latin.woff2", weight: "600", style: "normal" },
+  ],
+  display: "swap",
+});
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
