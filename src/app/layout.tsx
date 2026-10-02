@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} | Passive Multifamily Real Estate Investing`,
     description: site.description,
-    images: [{ url: "/og", width: 1200, height: 630, alt: site.name }],
+    images: [{ url: "/og?v=2", width: 1200, height: 630, alt: site.name }],
   },
-  twitter: { card: "summary_large_image", images: ["/og"] },
+  twitter: { card: "summary_large_image", images: ["/og?v=2"] },
   icons: { icon: "/brand/icon.png", apple: "/brand/icon.png" },
   // Beta: keep the preview out of search until Jeremy and Rise48 Marketing approve launch.
   robots: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true" ? undefined : { index: false, follow: false },

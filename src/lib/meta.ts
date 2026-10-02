@@ -5,6 +5,9 @@ import { site } from "@/config/site";
  * Per page metadata with a branded share image, so links look good when opened or texted on an iPhone.
  * The image is rendered by /og (src/app/og/route.tsx) from the page title, over real property photography.
  */
+// Bump when the share image design changes, so iMessage, LinkedIn, and Facebook fetch the new one.
+export const OG_VERSION = "2";
+
 export function pageMeta({
   title,
   description,
@@ -18,7 +21,7 @@ export function pageMeta({
   eyebrow?: string;
   image?: string;
 }): Metadata {
-  const og = image ?? `/og?${new URLSearchParams({ title, ...(eyebrow ? { eyebrow } : {}) })}`;
+  const og = image ?? `/og?${new URLSearchParams({ title, ...(eyebrow ? { eyebrow } : {}), v: OG_VERSION })}`;
   return {
     title,
     description,
