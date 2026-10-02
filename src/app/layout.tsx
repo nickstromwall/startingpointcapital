@@ -27,8 +27,14 @@ const cond = localFont({
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
+// Absolute URLs for share images and canonicals. Until the domain moves off Squarespace, use the live Vercel
+// domain (Vercel sets VERCEL_PROJECT_PRODUCTION_URL). Set NEXT_PUBLIC_SITE_URL at launch to override.
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : site.url);
+
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(baseUrl),
   title: { default: `${site.name} | Passive Multifamily Real Estate Investing`, template: `%s | ${site.name}` },
   description: site.description,
   openGraph: {

@@ -24,6 +24,7 @@ The build brief (BRIEF.md) is kept out of git because it contains private call n
 | `GHL_WEBHOOK_URL` | GoHighLevel inbound webhook, if switching to GHL. |
 | `TEST_WEBHOOK_URL` | Optional mirror of every lead (for example webhook.site) while testing. |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID. |
+| `NEXT_PUBLIC_SITE_URL` | Set to `https://www.startingpointcapital.com` at launch so share images and canonicals use the real domain. |
 | `NEXT_PUBLIC_ALLOW_INDEXING` | Set to `true` at launch. Until then the site is `noindex` and robots disallow all. |
 
 ## Before launch (CONFIRM items from the brief)
