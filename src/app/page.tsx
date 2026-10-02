@@ -12,6 +12,8 @@ export const metadata = pageMeta({
   description:
     "Passive cash flow without being a landlord. Starting Point Capital helps busy professionals invest in institutional quality apartment communities, powered by Rise48 Equity.",
   path: "/",
+  // Pre-rendered JPG of the /og design (with Jeremy), small enough for iMessage, WhatsApp, and LinkedIn previews.
+  image: "/share/home.jpg?v=2",
 });
 
 export default function Home() {
