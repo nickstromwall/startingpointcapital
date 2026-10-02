@@ -1,0 +1,15 @@
+.heroStats { margin-top: clamp(56px, 8vw, 110px); padding-top: 8px; }
+.whyHead { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: end; }
+.noLandlord { margin: 48px 0 0; font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 300; color: var(--white); display: flex; align-items: center; gap: 18px; }
+.noLandlord::before { content: ""; width: 48px; height: 2px; background: var(--gold); flex: none; }
+.teamHead { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.partner { background: var(--navy); }
+.partnerInner { display: grid; grid-template-columns: auto 1fr auto; gap: 36px; align-items: center; padding: 48px 0; }
+.partnerInner :global(.eyebrow) { margin-bottom: 10px; color: var(--gold); }
+.partnerInner h3 { color: var(--white); font-weight: 400; font-size: clamp(1.25rem, 2.2vw, 1.7rem); }
+.partnerMark { width: 96px; height: auto; opacity: 0.9; }
+@media (max-width: 1020px) {
+  .whyHead { grid-template-columns: 1fr; }
+  .partnerInner { grid-template-columns: 1fr; gap: 20px; }
+  .partnerMark { display: none; }
+}

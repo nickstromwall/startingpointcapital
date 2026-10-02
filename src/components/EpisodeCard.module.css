@@ -1,0 +1,12 @@
+.card { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); }
+.card:hover { transform: translateY(-3px); box-shadow: 0 30px 60px -36px rgba(10, 18, 38, 0.4); }
+.art { position: relative; aspect-ratio: 1 / 1; background: var(--navy); }
+.body { padding: 22px 24px 26px; }
+.body h3 { font-size: 1.1rem; }
+.meta { font-family: var(--cond); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.85rem; color: var(--gold-deep); margin-bottom: 8px; }
+.sum { color: var(--muted); font-size: 0.9rem; margin: 10px 0 0; }
+.feature { display: grid; grid-template-columns: 0.8fr 1.2fr; }
+.feature .art { aspect-ratio: auto; min-height: 320px; }
+.feature .body { padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; justify-content: center; }
+.feature h3 { font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 400; }
+@media (max-width: 760px) { .feature { grid-template-columns: 1fr; } .feature .art { aspect-ratio: 1 / 1; min-height: 0; } }

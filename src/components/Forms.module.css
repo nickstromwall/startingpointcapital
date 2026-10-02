@@ -1,0 +1,21 @@
+.box { position: relative; background: var(--white); color: var(--ink); border-radius: var(--radius); padding: clamp(26px, 3.4vw, 40px); box-shadow: 0 40px 80px -40px rgba(10, 18, 38, 0.35); border: 1px solid var(--line); }
+.box h3 { margin-bottom: 10px; color: var(--ink); }
+.dark { background: var(--navy-700); border-color: rgba(255, 255, 255, 0.1); color: var(--white); box-shadow: none; }
+.dark h3 { color: var(--white); }
+.dark :global(.input) { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.22); color: var(--white); }
+.dark :global(.field > span), .dark :global(.check), .dark :global(.form-note) { color: rgba(255, 255, 255, 0.72); }
+.dark :global(.form-note a) { color: var(--white); }
+.submit { width: 100%; margin-top: 18px; }
+.body { color: var(--muted); }
+.dark .body { color: rgba(255, 255, 255, 0.72); }
+.kicker { font-family: var(--cond); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.85rem; color: var(--gold-deep); margin-bottom: 8px; }
+.dark .kicker { color: var(--gold); }
+.choices { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.dark .choices :global(.btn-ghost) { color: var(--white); border-color: rgba(255, 255, 255, 0.35); }
+.unlocked { list-style: none; padding: 0; margin: 16px 0 0; }
+.unlocked li { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.dark .unlocked li { border-color: var(--line-dark); }
+.unlocked a { font-weight: 600; text-decoration: none; color: inherit; }
+.unlocked a::after { content: "  →"; color: var(--gold); }
+.book { margin-top: 28px; }
+@media (max-width: 640px) { .choices :global(.btn) { width: 100%; } }

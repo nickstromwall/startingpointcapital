@@ -1,0 +1,105 @@
+/* Hero */
+.hero { position: relative; overflow: hidden; padding: calc(var(--header-h) + clamp(72px, 10vw, 140px)) 0 clamp(72px, 9vw, 120px); }
+.tall { min-height: min(100svh, 980px); display: flex; align-items: flex-end; padding-bottom: clamp(56px, 7vw, 96px); }
+.heroMedia { position: absolute; inset: 0; }
+.heroMedia::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(10, 18, 38, 0.92) 0%, rgba(10, 18, 38, 0.72) 45%, rgba(10, 18, 38, 0.3) 100%),
+    linear-gradient(0deg, rgba(10, 18, 38, 0.9) 0%, rgba(10, 18, 38, 0) 45%);
+}
+/* Without a photo: a faint skyline line pattern, a nod to the SPC mark. */
+.heroLines {
+  position: absolute; inset: 0; opacity: 0.5;
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(201, 166, 70, 0.16), transparent 60%),
+    radial-gradient(900px 600px at -10% 120%, rgba(61, 75, 114, 0.6), transparent 60%);
+}
+.heroLines::after {
+  content: ""; position: absolute; right: -2%; bottom: -8%; width: min(46vw, 620px); aspect-ratio: 1000 / 751;
+  background: url("/brand/mark-white.png") no-repeat center / contain; opacity: 0.06;
+}
+.heroInner { position: relative; width: 100%; }
+.heroInner h1 { max-width: 980px; }
+.heroLede { margin-top: 26px; }
+
+/* Rise48 */
+.rise { background: var(--white); }
+.riseTop { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: end; }
+.riseCopy .lede { margin-bottom: 16px; }
+.riseCard { margin-top: clamp(48px, 6vw, 80px); display: grid; grid-template-columns: 300px 1fr; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.riseLogo { display: grid; place-items: center; padding: 40px; background: var(--white); border-right: 1px solid var(--line); }
+.riseLogo img { width: 100%; max-width: 230px; height: auto; }
+.riseStats { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--paper); }
+.riseStats > div { padding: 36px 28px; border-left: 1px solid var(--line); }
+.riseStats > div:first-child { border-left: 0; }
+.riseValue { font-family: var(--cond); font-weight: 500; font-size: clamp(2.4rem, 3.6vw, 3.2rem); line-height: 1; color: var(--navy); }
+.riseLabel { margin-top: 10px; font-size: 0.85rem; color: var(--muted); }
+.alongside { margin: 36px 0 0; display: flex; align-items: center; gap: 18px; font-size: clamp(1.15rem, 2vw, 1.45rem); font-weight: 300; color: var(--ink); }
+.alongside::before { content: ""; flex: none; width: 48px; height: 2px; background: var(--gold); }
+
+/* Pillars */
+.pillars { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line-dark); }
+.pillar { padding: 40px 32px 8px 0; border-right: 1px solid var(--line-dark); margin-right: 32px; }
+.pillar:last-child { border-right: 0; margin-right: 0; }
+.pillarN { display: block; font-family: var(--cond); font-size: 1.05rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 26px; }
+.pillar h3 { margin-bottom: 12px; color: var(--white); font-size: 1.5rem; font-weight: 500; }
+.pillar p { color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; }
+.pillarNote { font-size: 0.78rem !important; color: rgba(255, 255, 255, 0.5) !important; font-style: italic; }
+
+/* Steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; counter-reset: s; }
+.steps li { position: relative; padding-top: 28px; border-top: 1px solid var(--line); }
+.steps li::before { content: ""; position: absolute; top: -1px; left: 0; width: 56px; height: 2px; background: var(--gold); }
+.stepN { display: block; font-family: var(--cond); font-weight: 500; font-size: 3.4rem; line-height: 1; color: var(--navy); margin-bottom: 18px; }
+.steps h3 { margin-bottom: 8px; }
+.steps p { color: var(--muted); font-size: 0.95rem; }
+.stepsDark li { border-color: var(--line-dark); }
+.stepsDark .stepN { color: var(--gold); }
+.stepsDark p { color: rgba(255, 255, 255, 0.7); }
+
+/* Story */
+.story :global(.offset-media) { aspect-ratio: 4 / 4.4; }
+
+/* Team */
+.team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.member { background: var(--white); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; }
+.memberPhoto { position: relative; aspect-ratio: 4 / 4.3; background: var(--mist); }
+.memberBody { padding: 24px 26px 28px; }
+.memberBody h3 { margin-bottom: 2px; }
+.role { font-family: var(--cond); font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 12px; }
+
+/* Reviews */
+.stars { color: var(--gold); letter-spacing: 3px; }
+
+/* Resources */
+.resources { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.resource { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); }
+.resource:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -36px rgba(10, 18, 38, 0.45); }
+.resourceImg { position: relative; aspect-ratio: 16 / 10; background: var(--navy); }
+.resourceBody { padding: 26px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.resourceBody :global(.text-link) { margin-top: auto; align-self: flex-start; }
+.resourceKind { font-family: var(--cond); font-size: 0.9rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-deep); }
+
+/* CTA band */
+.cta { position: relative; overflow: hidden; background: var(--navy); }
+.ctaGlow { position: absolute; inset: 0; background: radial-gradient(800px 420px at 100% 0%, rgba(201, 166, 70, 0.18), transparent 60%); }
+.cta :global(.wrap) { position: relative; }
+.ctaList li { color: rgba(255, 255, 255, 0.85); }
+
+@media (max-width: 1020px) {
+  .riseTop { grid-template-columns: 1fr; }
+  .riseCard { grid-template-columns: 1fr; }
+  .riseLogo { border-right: 0; border-bottom: 1px solid var(--line); padding: 32px; }
+  .riseStats { grid-template-columns: repeat(2, 1fr); }
+  .riseStats > div:nth-child(3) { border-left: 0; }
+  .riseStats > div:nth-child(n + 3) { border-top: 1px solid var(--line); }
+  .pillars, .steps { grid-template-columns: repeat(2, 1fr); }
+  .pillar:nth-child(2) { border-right: 0; margin-right: 0; }
+  .team, .resources { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .pillars, .steps, .team, .resources { grid-template-columns: 1fr; }
+  .pillar { border-right: 0; margin-right: 0; border-bottom: 1px solid var(--line-dark); padding-right: 0; }
+  .riseStats > div { padding: 26px 20px; }
+}
