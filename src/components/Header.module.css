@@ -20,25 +20,50 @@
 .link[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 2px; background: var(--gold); }
 .actions { display: flex; gap: 10px; }
 
-.toggle { display: none; width: 46px; height: 46px; background: none; border: 0; cursor: pointer; position: relative; }
-.toggle span { position: absolute; left: 11px; right: 11px; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.25s var(--ease); }
-.toggle span:first-child { top: 18px; }
-.toggle span:last-child { top: 26px; }
-.toggle[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
-.toggle[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
+.contact { display: none; }
+
+/* Menu button: a 44px tap target with a hairline ring, so it reads as a button on any photo. */
+.toggle {
+  display: none; width: 44px; height: 44px; margin-right: -4px; flex: none; position: relative; cursor: pointer;
+  background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 50%;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.toggle:hover, .toggle[aria-expanded="true"] { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.5); }
+.toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.toggle span { position: absolute; left: 13px; right: 13px; height: 1.5px; background: var(--white); border-radius: 2px; transition: transform 0.25s var(--ease); }
+.toggle span:first-child { top: 17.5px; }
+.toggle span:last-child { top: 23.5px; }
+.toggle[aria-expanded="true"] span:first-child { transform: translateY(3px) rotate(45deg); }
+.toggle[aria-expanded="true"] span:last-child { transform: translateY(-3px) rotate(-45deg); }
 
 @media (max-width: 1100px) {
   .toggle { display: block; }
+  /* Open menu: the bar and the panel share one solid color so there is no seam. */
+  .header.menuOpen { background: var(--navy-900); box-shadow: 0 1px 0 var(--line-dark); backdrop-filter: none; -webkit-backdrop-filter: none; }
   .nav {
-    display: none; position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0;
-    flex-direction: column; align-items: stretch; justify-content: space-between; gap: 0;
-    background: var(--navy-900); padding: 12px 20px 36px; overflow-y: auto;
+    display: none; position: fixed; top: var(--header-h); left: 0; right: 0; height: calc(100dvh - var(--header-h));
+    flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0;
+    background: var(--navy-900); padding: 8px 20px calc(28px + env(safe-area-inset-bottom)); overflow-y: auto; overscroll-behavior: contain;
   }
-  .open { display: flex; }
+  .open { display: flex; animation: menuIn 0.22s var(--ease); }
   .links { flex-direction: column; align-items: stretch; gap: 0; }
-  .link { padding: 18px 0; border-bottom: 1px solid var(--line-dark); font-size: 1.35rem; font-weight: 300; color: var(--white); }
+  .link { padding: 16px 0; border-bottom: 1px solid var(--line-dark); font-size: 1.25rem; font-weight: 400; color: var(--white); }
   .link[aria-current="page"]::after { display: none; }
   .link[aria-current="page"] { color: var(--gold); }
-  .actions { flex-direction: column; margin-top: 28px; }
-  .actions :global(.btn) { min-height: 54px; font-size: 1rem; }
+  .actions { flex-direction: column-reverse; gap: 12px; margin-top: 28px; }
+  .actions :global(.btn) { min-height: 52px; font-size: 1rem; }
+  .contact {
+    display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: auto; padding-top: 28px;
+    font-size: 0.92rem; color: rgba(255, 255, 255, 0.7);
+  }
+  .contact a { color: inherit; text-decoration: none; }
+  .contact a:hover { color: var(--white); }
 }
+
+@media (max-width: 760px) {
+  .brand img { width: 104px; }
+  .inner { gap: 16px; }
+}
+
+@keyframes menuIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .open { animation: none; } }

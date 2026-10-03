@@ -31,6 +31,9 @@
   --header-h: 76px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
+@media (max-width: 760px) {
+  :root { --header-h: 64px; }
+}
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 12px); -webkit-text-size-adjust: 100%; }
@@ -209,7 +212,9 @@ textarea.input { padding: 14px 16px; min-height: 120px; resize: vertical; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, .js .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+  /* Turn off motion only. Static transforms (the menu X, centered cards) must keep working for Reduce Motion users. */
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .js .reveal { opacity: 1 !important; transform: none !important; }
 }
 
 @media (max-width: 1020px) {
