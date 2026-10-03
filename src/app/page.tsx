@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { flags, links } from "@/config/site";
+import { cta, flags } from "@/config/site";
 import { pageMeta } from "@/lib/meta";
 import {
-  CtaBand, Disclaimer, PageHero, Pillars, ResourceCards, Reviews, Rise48Block, Steps, StoryBlock, TeamGrid, TrustStrip,
+  CtaBand, CtaButtons, Disclaimer, PageHero, Pillars, PoweredBy, ResourceCards, Reviews, Steps, StoryBlock, TeamGrid, TrustStrip,
 } from "@/components/Blocks";
 import styles from "./home.module.css";
 
@@ -26,16 +26,13 @@ export default function Home() {
         title={<>Passive cash flow, <em>without being a landlord.</em></>}
         lede="Starting Point Capital helps busy professionals invest in institutional quality apartment communities, alongside a team that puts its own money into every deal."
       >
-        <div className="btn-row mt-3">
-          <Link href="/invest" className="btn btn-gold">Get Access <span className="arrow">→</span></Link>
-          <a href={links.calendly} target="_blank" rel="noopener" className="btn btn-ghost">Schedule a call</a>
-        </div>
+        <CtaButtons />
         <div className={styles.heroStats}>
           <TrustStrip dark />
         </div>
       </PageHero>
 
-      <Rise48Block />
+      <PoweredBy />
 
       <section className="section on-dark deep">
         <div className="wrap">
@@ -66,7 +63,8 @@ export default function Home() {
           </div>
           <Steps />
           <div className="btn-row mt-3">
-            <Link href="/invest" className="btn btn-navy">Get Access <span className="arrow">→</span></Link>
+            <Link href={cta.primary.href} className="btn btn-navy">{cta.primary.label} <span className="arrow">→</span></Link>
+            <Link href={cta.secondary.href} className="btn btn-ghost">{cta.secondary.label}</Link>
           </div>
         </div>
       </section>
@@ -78,11 +76,11 @@ export default function Home() {
           <div className={`head ${styles.teamHead}`}>
             <div>
               <span className="eyebrow">Our team</span>
-              <h2>Not a one man show. <em>A team that invests with you.</em></h2>
+              <h2>Led by Jeremy. <em>Built as a team that invests with you.</em></h2>
             </div>
-            <Link href="/about#team" className="text-link">Meet the full team</Link>
+            <Link href="/about#team" className="text-link">Read every bio</Link>
           </div>
-          <TeamGrid limit={3} />
+          <TeamGrid />
         </div>
       </section>
 
@@ -92,10 +90,10 @@ export default function Home() {
             <div className={styles.partnerInner}>
               <Image src="/brand/mark-white.png" alt="" width={120} height={90} className={styles.partnerMark} />
               <div>
-                <span className="eyebrow">For capital raisers</span>
-                <h3>Have a network that trusts you? Build your own fund with us.</h3>
+                <span className="eyebrow">For capital partners</span>
+                <h3>Have a network that trusts you? Build your own capital raising business with us.</h3>
               </div>
-              <Link href="/partner" className="btn btn-gold">Partner with us <span className="arrow">→</span></Link>
+              <Link href="/partner" className="btn btn-gold">Partner With Us <span className="arrow">→</span></Link>
             </div>
           </div>
         </section>
@@ -108,7 +106,7 @@ export default function Home() {
           <div className="head">
             <span className="eyebrow">Learn first</span>
             <h2>Education before <em>investment.</em></h2>
-            <p className="lede">We believe the best investors understand exactly what they own. Start with the book, the podcast, or our free guide.</p>
+            <p className="lede">We believe the best investors understand exactly what they own. Start with the free investor guide, then keep going at your own pace.</p>
           </div>
           <ResourceCards />
         </div>

@@ -1,0 +1,10 @@
+.tabs { display: inline-flex; flex-wrap: wrap; gap: 6px; padding: 6px; border: 1px solid var(--line); border-radius: 999px; background: var(--white); }
+.tab { border: 0; background: transparent; padding: 12px 22px; border-radius: 999px; font: inherit; font-weight: 600; color: var(--muted); cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--navy); color: var(--white); }
+.tab:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.intro { margin: 32px 0 24px; max-width: 640px; }
+.intro h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
+@media (max-width: 640px) {
+  .tabs { display: flex; border-radius: 18px; }
+  .tab { flex: 1 1 100%; border-radius: 12px; }
+}

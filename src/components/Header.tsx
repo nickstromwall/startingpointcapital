@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { flags, links, nav } from "@/config/site";
+import { cta, flags, links, nav } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import styles from "./Header.module.css";
 
@@ -24,7 +24,7 @@ export default function Header() {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
-  const items = flags.showPartnerPath ? [...nav, { href: "/partner", label: "Partner" }] : nav;
+  const items = flags.showPartnerPath ? [...nav, { href: "/partner", label: "Partner With Us" }] : nav;
 
   return (
     <header className={`${styles.header} ${scrolled || open ? styles.solid : ""}`}>
@@ -48,18 +48,18 @@ export default function Header() {
             ))}
           </div>
           <div className={styles.actions}>
-            <Link href="/contact" className="btn btn-ghost light btn-sm" onClick={() => setOpen(false)}>
-              Contact
-            </Link>
             <a
               href={links.investorLogin}
               target="_blank"
               rel="noopener"
-              className="btn btn-gold btn-sm"
+              className="btn btn-ghost light btn-sm"
               onClick={() => trackEvent("investor_login_click", { location: "header" })}
             >
               Investor Login
             </a>
+            <Link href={cta.primary.href} className="btn btn-gold btn-sm" onClick={() => setOpen(false)}>
+              {cta.primary.label}
+            </Link>
           </div>
         </nav>
 

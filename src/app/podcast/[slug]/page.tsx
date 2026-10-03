@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { podcast } from "@/config/site";
-import { cleanNotes, formatDate, formatDuration, getEpisode, getEpisodes, summary } from "@/lib/podcast";
+import { cleanNotes, formatDate, formatDuration, getEpisode, getShownEpisodes, summary } from "@/lib/podcast";
 import { pageMeta } from "@/lib/meta";
 import { CtaBand, Disclaimer, PageHero } from "@/components/Blocks";
 import styles from "./episode.module.css";
@@ -11,7 +11,7 @@ export const revalidate = 86400;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return (await getEpisodes()).map((e) => ({ slug: e.slug }));
+  return (await getShownEpisodes()).map((e) => ({ slug: e.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/podcast/[slug]">) {
@@ -21,12 +21,17 @@ export async function generateMetadata({ params }: PageProps<"/podcast/[slug]">)
 }
 
 export default async function EpisodePage({ params }: PageProps<"/podcast/[slug]">) {
-  const e = await getEpisode((await params).slug);
-  if (!e) notFound();
+  const { slug } = await params;
+  const e = (await getShownEpisodes()).find((x) => x.slug === slug);
+  if (!e) {
+    // Older episodes live on the podcast apps now. Forward them to the podcast page instead of a 404.
+    if (await getEpisode(slug)) permanentRedirect("/podcast");
+    notFound();
+  }
   return (
     <>
       <PageHero eyebrow={`${podcast.name} · ${formatDate(e.date)}`} title={e.title}>
-        <p className="mt-2"><Link href="/podcast" className="text-link small">All episodes</Link></p>
+        <p className="mt-2"><Link href="/podcast" className="text-link small">Latest episodes</Link></p>
       </PageHero>
       <section className="section">
         <div className={`wrap ${styles.layout}`}>

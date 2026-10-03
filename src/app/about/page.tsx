@@ -13,9 +13,9 @@ export const metadata = pageMeta({
 });
 
 const MILESTONES = [
-  { year: "25 yrs", text: "Jeremy builds a career in tech sales, most of it at ADP, as a consistent top performer." },
-  { year: "2012", text: "Starts investing actively with fix and flip properties. Learns what landlording really costs in time." },
-  { year: "2015", text: "Shifts to passive multifamily investing as a limited partner." },
+  { year: "25 yrs", text: "Jeremy builds a career in tech sales, most of it at ADP, living on a W2 and the next commission check." },
+  { year: "2012", text: "Scratches the entrepreneurial itch with fix and flips and active real estate ownership. Learns what it really costs in time." },
+  { year: "2015", text: "As life gets busier with four kids, shifts to passive multifamily investing as a limited partner." },
   { year: "Then", text: "Raises capital for other operators, and starts Starting Point Capital with a logo, a simple website, and a spreadsheet for a CRM." },
   { year: "Today", text: "Brings Starting Point Capital and Rise48 Equity together. The side hustle becomes the main hustle, and a team of partners grows around it." },
 ];
@@ -37,12 +37,21 @@ export default function AboutPage() {
             <span className="eyebrow">Our story</span>
             <h2>“My biggest value is that <em>I am one of you.</em>”</h2>
             <div className="mt-3">
-              <p className="lede">{jeremy.bio[0]}</p>
-              <p className="muted">{jeremy.bio[1]}</p>
-              <p className="muted">
-                Jeremy invests his own money in every deal he brings to investors. As he likes to say, he gets paid twice: once as a partner and once as an investor right alongside you. Nearly all of the $100M+ our network has invested came through relationships and referrals, not cold outreach.
+              <p className="lede">
+                I spent 25 years in tech sales, most of them at ADP. It was a good career, but my family depended on a W2 and on chasing the next commission check. I wanted income that kept coming whether or not I closed a deal that quarter.
               </p>
-              <p className="muted">{jeremy.bio[3]}</p>
+              <p className="muted">
+                Real estate scratched my entrepreneurial itch. I started with fix and flips in 2012 and learned how much of my time active ownership really takes. As life got busier with Marlene and our four kids, I made the move to passive investing in 2015.
+              </p>
+              <p className="muted">
+                Today I invest my own money in every deal we bring to investors. I get paid twice: once as a partner and once as an investor right alongside you. Nearly all of the $100M+ our network has invested came through relationships and referrals, not cold outreach.
+              </p>
+              <p className="muted">
+                That is why I started Starting Point Capital. The people we serve are busy professionals, sales leaders, and business owners who want what I wanted: their time back, and their money working without a second job. I am one of them.
+              </p>
+              <p className="small mt-2" style={{ fontFamily: "var(--cond)", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--gold-deep)" }}>
+                {jeremy.name}, {jeremy.role}
+              </p>
             </div>
           </div>
           <div className={`reveal ${styles.portrait}`}>
@@ -70,7 +79,7 @@ export default function AboutPage() {
         <div className="wrap">
           <div className="head">
             <span className="eyebrow">Our team</span>
-            <h2>Partners, co managers, and <em>the people behind them.</em></h2>
+            <h2>Led by Jeremy, <em>supported by a team.</em></h2>
             <p className="lede">Our partners come from sales leadership, business ownership, and real estate brokerage. Each one invests passively, too.</p>
           </div>
           <TeamGrid detailed />

@@ -11,8 +11,9 @@ import styles from "./Forms.module.css";
 type Step = "details" | "accredited" | "done";
 
 /**
- * Get Access, the Elevest pattern.
- * Step 1: name, email, phone, consent. This unlocks gated content.
+ * Request Access, the Elevest pattern.
+ * Step 1: name, email, phone, consent. This unlocks the portfolio and lead magnets, and subscribes to the newsletter
+ * (tagged `newsletter:subscribed` so the CRM can start Jeremy's 30 email drip).
  * Step 2: accredited status, asked as a follow up and never a blocker.
  * Step 3: book a call with the team.
  */
@@ -40,6 +41,7 @@ export default function AccessForm({ dark, source = "access", compact, onGranted
         website: f.get("website"),
         source,
         intent: "investor",
+        newsletter: true,
       });
       onGranted?.();
       grantAccess(email);
@@ -86,9 +88,11 @@ export default function AccessForm({ dark, source = "access", compact, onGranted
         <p className={styles.kicker}>You have access</p>
         <h3>Welcome. Here is what is unlocked.</h3>
         <ul className={styles.unlocked}>
-          <li><Link href="/portfolio">Our full portfolio</Link></li>
+          <li><Link href="/portfolio">Our current portfolio</Link></li>
           <li><Link href="/guides/investor-guide">The Passive Real Estate Investing Guide</Link></li>
-          <li><a href="#book">A 1 on 1 call with our team</a></li>
+          <li><Link href="/resources#guides">Every free guide, including the sales professionals and 1031 guides</Link></li>
+          <li>The newsletter, arriving in your inbox</li>
+          <li>{compact ? <Link href="/book">A 1 on 1 call with our team</Link> : <a href="#book">A 1 on 1 call with our team</a>}</li>
         </ul>
         {!compact ? (
           <div id="book" className={styles.book}>
@@ -96,7 +100,7 @@ export default function AccessForm({ dark, source = "access", compact, onGranted
             <CalendlyEmbed location={source} prefill={who} height={680} />
           </div>
         ) : (
-          <Link href="/invest#book" className="btn btn-navy mt-1">Book a call <span className="arrow">→</span></Link>
+          <Link href="/book" className="btn btn-navy mt-1">Book a call <span className="arrow">→</span></Link>
         )}
       </div>
     );
@@ -116,11 +120,11 @@ export default function AccessForm({ dark, source = "access", compact, onGranted
         <span>I agree to receive emails, text messages, and calls from Starting Point Capital about investment education and opportunities. Message and data rates may apply. Reply STOP to opt out.</span>
       </label>
       <button className={`btn ${dark ? "btn-gold" : "btn-navy"} ${styles.submit}`} disabled={sending}>
-        {sending ? "Sending…" : <>Get Access <span className="arrow">→</span></>}
+        {sending ? "Sending…" : <>Request Access <span className="arrow">→</span></>}
       </button>
       {error ? <p className="form-error" role="alert">{error}</p> : null}
       <p className="form-note">
-        Free. We never sell your information. See our <Link href="/privacy">privacy policy</Link>.
+        Free. Includes our newsletter, and you can unsubscribe anytime. We never sell your information. See our <Link href="/privacy">privacy policy</Link>.
       </p>
     </form>
   );

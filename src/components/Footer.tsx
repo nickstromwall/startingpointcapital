@@ -18,7 +18,8 @@ export default function Footer() {
           <div>
             <h4>Invest</h4>
             <ul>
-              <li><Link href="/invest">Get access</Link></li>
+              <li><Link href="/invest">Request access</Link></li>
+              <li><Link href="/book">Book a call</Link></li>
               <li><Link href="/portfolio">Portfolio</Link></li>
               <li><Link href="/sdira">Self directed IRA</Link></li>
               <li><a href={links.investorLogin} target="_blank" rel="noopener">Investor login</a></li>
@@ -29,6 +30,7 @@ export default function Footer() {
             <ul>
               <li><Link href="/resources">Resources</Link></li>
               <li><Link href="/guides/investor-guide">Investor guide</Link></li>
+              <li><Link href="/newsletter">Newsletter</Link></li>
               <li><Link href="/podcast">{podcast.name}</Link></li>
               <li><Link href="/blog">Blog</Link></li>
               <li><a href={links.book} target="_blank" rel="noopener">The book</a></li>
@@ -38,7 +40,7 @@ export default function Footer() {
             <h4>Company</h4>
             <ul>
               <li><Link href="/about">About</Link></li>
-              {flags.showPartnerPath ? <li><Link href="/partner">Partner with us</Link></li> : null}
+              {flags.showPartnerPath ? <li><Link href="/partner">Partner With Us</Link></li> : null}
               <li><Link href="/contact">Contact</Link></li>
               <li><a href={site.phoneHref}>{site.phone}</a></li>
               <li><a href={`mailto:${site.email}`}>Email us</a></li>

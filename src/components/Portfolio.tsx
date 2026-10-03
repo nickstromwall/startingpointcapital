@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { flags } from "@/config/site";
 import { useAccess } from "@/lib/access";
-import { categories, dealUnits, deals } from "@/lib/portfolio";
+import { categories, dealOperator, dealUnits, deals } from "@/lib/portfolio";
 import AccessForm from "./AccessForm";
 import styles from "./Portfolio.module.css";
 
@@ -32,8 +32,8 @@ export default function Portfolio() {
           {!open ? (
             <div>
               <span className="eyebrow">Investor access</span>
-              <h2 style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)" }}>See the full portfolio.</h2>
-              <p className="muted mt-1">Every property and fund our investors have participated in, with market, size, and year. Share a few details to unlock it on this device.</p>
+              <h2 style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)" }}>See our current portfolio.</h2>
+              <p className="muted mt-1">Every property and fund our investors have participated in, with market, size, and year. Request access to unlock it, along with our free guides and newsletter.</p>
             </div>
           ) : null}
           <AccessForm source="portfolio" compact onGranted={() => setFollowUp(true)} />
@@ -60,6 +60,7 @@ export default function Portfolio() {
               <h3>{d.name}</h3>
               <p className={styles.loc}>{d.location}</p>
               <p className={styles.meta}>{dealUnits(d)}</p>
+              {dealOperator(d) ? <p className={styles.operator}>{dealOperator(d)}</p> : null}
             </div>
           </li>
         ))}

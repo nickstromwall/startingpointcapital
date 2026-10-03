@@ -95,6 +95,62 @@ export const guides: Guide[] = [
     ],
   },
   {
+    slug: "sales-professionals",
+    title: "Passive Real Estate for Sales Professionals",
+    eyebrow: "Free guide for sales professionals",
+    audience: "Sales professionals and recent business sellers",
+    lede: "You spent a career building pipeline and closing deals. Here is how to put that hard earned capital to work without taking on a second job.",
+    photo: "/properties/rise-sunridge.jpg",
+    intro: [
+      {
+        heading: "Written by one of you",
+        paragraphs: [
+          "Jeremy Dyer spent 25 years in tech sales, most of them at ADP. Like a lot of top performers, he earned well and had almost no time to manage investments. Passive multifamily became the way he built wealth outside of his W2, and later the business he runs today.",
+          "If you have recently retired from sales, or you recently sold a business, you are facing the same question he did: how do I keep my money working without becoming a landlord?",
+        ],
+      },
+      {
+        heading: "Why sales professionals tend to fit passive investing",
+        bullets: [
+          "You value leverage. A professional operator gives you scale you could not build alone.",
+          "You know how to evaluate people. Vetting a sponsor is a lot like qualifying a prospect.",
+          "Your time is your most valuable asset, and you would rather spend it with family than fixing furnaces.",
+        ],
+      },
+    ],
+    body: [
+      {
+        heading: "Treat it like a discovery call",
+        paragraphs: ["The same questions you would ask a prospect apply to a sponsor. Before you invest, ask:"],
+        bullets: [
+          "What is your track record, including the deals that did not go as planned?",
+          "How much of your own money is in this deal?",
+          "Who manages the property day to day?",
+          "How often will I hear from you, and what will the reports include?",
+          "What happens if the business plan takes longer than expected?",
+        ],
+      },
+      {
+        heading: "If you recently sold a business",
+        paragraphs: [
+          "A liquidity event brings opportunity and pressure at the same time. Take your time. Build a plan with your CPA and financial advisor first, decide how much capital you can commit for a multi year hold, and diversify across operators, markets, and timelines.",
+        ],
+      },
+      {
+        heading: "Using retirement accounts",
+        paragraphs: [
+          "Some investors participate through a self directed IRA, which lets a retirement account hold alternative assets like private real estate. There are specific rules for these accounts, so talk with the custodian and your advisor before you start.",
+        ],
+      },
+      {
+        heading: "Start the conversation",
+        paragraphs: [
+          "Our team includes former sales leaders and business owners who made this same transition. Book a call and we will share how they did it.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "1031-guide",
     title: "The 1031 Exchange Guide for Rental Property Owners",
     eyebrow: "Free 1031 guide",
@@ -149,62 +205,6 @@ export const guides: Guide[] = [
         heading: "Talk it through with us",
         paragraphs: [
           "We are not tax advisors, and we will always send you to your CPA for the final word. What we can do is walk you through how passive multifamily works, so you can make the decision with your eyes open.",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "sales-professionals",
-    title: "Passive Real Estate for Sales Professionals",
-    eyebrow: "Free guide for sales professionals",
-    audience: "Sales professionals and recent business sellers",
-    lede: "You spent a career building pipeline and closing deals. Here is how to put that hard earned capital to work without taking on a second job.",
-    photo: "/photos/desert-cove.jpg",
-    intro: [
-      {
-        heading: "Written by one of you",
-        paragraphs: [
-          "Jeremy Dyer spent 25 years in tech sales, most of them at ADP. Like a lot of top performers, he earned well and had almost no time to manage investments. Passive multifamily became the way he built wealth outside of his W2, and later the business he runs today.",
-          "If you have recently retired from sales, or you recently sold a business, you are facing the same question he did: how do I keep my money working without becoming a landlord?",
-        ],
-      },
-      {
-        heading: "Why sales professionals tend to fit passive investing",
-        bullets: [
-          "You value leverage. A professional operator gives you scale you could not build alone.",
-          "You know how to evaluate people. Vetting a sponsor is a lot like qualifying a prospect.",
-          "Your time is your most valuable asset, and you would rather spend it with family than fixing furnaces.",
-        ],
-      },
-    ],
-    body: [
-      {
-        heading: "Treat it like a discovery call",
-        paragraphs: ["The same questions you would ask a prospect apply to a sponsor. Before you invest, ask:"],
-        bullets: [
-          "What is your track record, including the deals that did not go as planned?",
-          "How much of your own money is in this deal?",
-          "Who manages the property day to day?",
-          "How often will I hear from you, and what will the reports include?",
-          "What happens if the business plan takes longer than expected?",
-        ],
-      },
-      {
-        heading: "If you recently sold a business",
-        paragraphs: [
-          "A liquidity event brings opportunity and pressure at the same time. Take your time. Build a plan with your CPA and financial advisor first, decide how much capital you can commit for a multi year hold, and diversify across operators, markets, and timelines.",
-        ],
-      },
-      {
-        heading: "Using retirement accounts",
-        paragraphs: [
-          "Some investors participate through a self directed IRA, which lets a retirement account hold alternative assets like private real estate. There are specific rules for these accounts, so talk with the custodian and your advisor before you start.",
-        ],
-      },
-      {
-        heading: "Start the conversation",
-        paragraphs: [
-          "Our team includes former sales leaders and business owners who made this same transition. Book a call and we will share how they did it.",
         ],
       },
     ],

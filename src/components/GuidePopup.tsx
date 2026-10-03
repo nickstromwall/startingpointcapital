@@ -11,7 +11,7 @@ import styles from "./GuidePopup.module.css";
 
 const KEY = "spc_popup_seen";
 // Pages where an offer would interrupt a task already in progress.
-const SKIP = ["/invest", "/guides", "/contact", "/partner", "/privacy", "/terms", "/disclosures", "/accreditation"];
+const SKIP = ["/invest", "/book", "/guides", "/contact", "/partner", "/privacy", "/terms", "/disclosures", "/accreditation"];
 
 /**
  * One subtle Investor Guide offer. Desktop: on exit intent, or after 45 seconds. Never on mobile entry:

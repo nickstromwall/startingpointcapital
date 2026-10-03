@@ -53,6 +53,8 @@ export default function LeadForm({
         source,
         intent,
         resource,
+        // Guides and the newsletter page join the newsletter list too.
+        newsletter: unlocks || undefined,
       });
       if (unlocks) grantAccess(email);
       trackEvent("generate_lead", { source, resource });

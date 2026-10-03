@@ -128,6 +128,17 @@ export async function getEpisode(slug: string) {
 /** The educational series Jeremy runs inside the feed. */
 export const isPassiveInvestingMadeSimple = (e: Episode) => /passive investing made simple/i.test(e.title);
 
+/**
+ * Episodes that get their own page on SPC: the latest few plus the Passive Investing Made Simple series.
+ * New episodes arrive from the feed on their own (refreshed daily), so nobody has to update the site each week.
+ */
+export async function getShownEpisodes(): Promise<Episode[]> {
+  const all = await getEpisodes();
+  const latest = all.slice(0, podcast.latestCount);
+  const series = all.filter((e) => isPassiveInvestingMadeSimple(e) && !latest.includes(e));
+  return [...latest, ...series];
+}
+
 /** Plain text summary for cards and meta descriptions. */
 export function summary(e: Episode, max = 220) {
   const text = e.descriptionHtml

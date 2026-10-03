@@ -87,7 +87,25 @@
 .cta :global(.wrap) { position: relative; }
 .ctaList li { color: rgba(255, 255, 255, 0.85); }
 
+.resources4 { grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.ctaButtons { display: flex; flex-direction: column; gap: 18px; margin-top: 24px; }
+.ctaQuiet { margin: 0; font-size: 0.95rem; color: var(--muted); }
+:global(.on-dark) .ctaQuiet { color: rgba(255, 255, 255, 0.72); }
+.storySign { margin-top: 18px; font-family: var(--cond); letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.85rem; color: var(--gold); }
+.powered { background: var(--white); border-bottom: 1px solid var(--line); }
+.poweredInner { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(28px, 4vw, 64px); align-items: center; }
+.poweredBrand { display: flex; flex-direction: column; gap: 8px; }
+.poweredBrand img { width: 180px; height: auto; }
+.poweredCopy { margin: 0; color: var(--ink); max-width: 560px; }
+.poweredStats { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(20px, 3vw, 40px); }
+.poweredStats li { display: flex; flex-direction: column; gap: 6px; }
+.poweredStats strong { font-family: var(--cond); font-weight: 500; font-size: clamp(1.8rem, 2.6vw, 2.3rem); line-height: 1; color: var(--navy); }
+.poweredStats span { font-size: 0.8rem; color: var(--muted); }
+.poweredNote { margin-top: 18px; }
+
 @media (max-width: 1020px) {
+  .poweredInner { grid-template-columns: 1fr; }
+  .resources4 { grid-template-columns: repeat(2, 1fr); }
   .riseTop { grid-template-columns: 1fr; }
   .riseCard { grid-template-columns: 1fr; }
   .riseLogo { border-right: 0; border-bottom: 1px solid var(--line); padding: 32px; }
@@ -99,7 +117,8 @@
   .team, .resources { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
-  .pillars, .steps, .team, .resources { grid-template-columns: 1fr; }
+  .pillars, .steps, .team, .resources, .resources4 { grid-template-columns: 1fr; }
+  .poweredStats { flex-wrap: wrap; }
   .pillar { border-right: 0; margin-right: 0; border-bottom: 1px solid var(--line-dark); padding-right: 0; }
   .riseStats > div { padding: 26px 20px; }
 }

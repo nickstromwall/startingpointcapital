@@ -47,3 +47,9 @@ export const dealUnits = (d: Deal) =>
     : d.units
       ? `${d.units.toLocaleString()} ${UNIT_WORD[d.assetType] ?? d.assetType.toLowerCase()}`
       : d.assetType;
+
+/**
+ * Deal level operator credit, the Elevest pattern. Rise48 deals all carry the "Rise" name.
+ * CONFIRM the sponsor of any non Rise deal before naming it here.
+ */
+export const dealOperator = (d: Deal) => (/^rise\b/i.test(d.name) ? "Operated by Rise48 Equity" : null);

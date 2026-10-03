@@ -3,7 +3,7 @@
 // The provider is swappable with one env var, because a Rise wide HubSpot to GoHighLevel move is being discussed:
 //   LEAD_PROVIDER=hubspot  -> HubSpot Forms API. Needs HUBSPOT_PORTAL_ID and HUBSPOT_FORM_ID.
 //                             Create the form in HubSpot with these fields: firstname, lastname, email, phone,
-//                             accredited_investor, lead_source, lead_intent, resource, utm_source, utm_medium,
+//                             accredited_investor, newsletter_opt_in, lead_source, lead_intent, resource, utm_source, utm_medium,
 //                             utm_campaign, utm_term, utm_content. Katie's workflows then pick it up.
 //   LEAD_PROVIDER=ghl      -> GoHighLevel inbound webhook. Needs GHL_WEBHOOK_URL. Branch on `tags` in the workflow.
 //   (unset)                -> test mode: the lead is accepted and logged, not forwarded. Good for previews.
@@ -19,6 +19,7 @@ type LeadBody = {
   email?: string;
   phone?: string;
   consent?: boolean;
+  newsletter?: boolean; // joins the newsletter list, which starts Jeremy's 30 email drip in the CRM
   accredited?: string; // follow up answer: "yes" | "no" | "unsure"
   source?: string; // which form: access, guide, newsletter, contact, partner, popup
   intent?: string; // investor | partner
@@ -61,6 +62,7 @@ export async function POST(request: Request) {
     ...(resource ? [`resource:${resource}`] : []),
     ...(accredited ? [`accredited:${accredited}`] : []),
     ...(body.consent ? ["consent:email-sms-calls"] : []),
+    ...(body.newsletter ? ["newsletter:subscribed"] : []),
   ];
   const lead = {
     email,
@@ -68,6 +70,7 @@ export async function POST(request: Request) {
     lastName: lastName || undefined,
     phone: phone || undefined,
     consent: Boolean(body.consent),
+    newsletter: Boolean(body.newsletter),
     accredited,
     source,
     intent,
@@ -107,7 +110,7 @@ async function post(url: string, data: unknown) {
 }
 
 type Lead = {
-  email: string; firstName?: string; lastName?: string; phone?: string; consent: boolean; accredited?: string;
+  email: string; firstName?: string; lastName?: string; phone?: string; consent: boolean; newsletter: boolean; accredited?: string;
   source: string; intent: string; resource?: string; message?: string; page?: string; utm: Record<string, string>;
 };
 
@@ -120,6 +123,7 @@ async function toHubSpot(lead: Lead, request: Request) {
     lastname: lead.lastName,
     phone: lead.phone,
     accredited_investor: lead.accredited,
+    newsletter_opt_in: lead.newsletter ? "true" : undefined,
     lead_source: lead.source,
     lead_intent: lead.intent,
     resource: lead.resource,

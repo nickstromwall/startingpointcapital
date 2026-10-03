@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { links, sdiraPartner } from "@/config/site";
+import { cta, links, sdiraPartner } from "@/config/site";
 import { pageMeta } from "@/lib/meta";
 import { Disclaimer, PageHero, Steps, TrustStrip } from "@/components/Blocks";
 import AccessForm from "@/components/AccessForm";
 import styles from "./invest.module.css";
 
 export const metadata = pageMeta({
-  title: "Get Access",
-  description: "Unlock our portfolio and investor guide, then book a call with the Starting Point Capital team.",
+  title: "Request Access",
+  description: "Request access to our current portfolio, free investor guides, and newsletter, then book a call with the Starting Point Capital team.",
   path: "/invest",
-  eyebrow: "Get access",
+  eyebrow: "Request access",
 });
 
 const FAQ = [
@@ -18,8 +18,8 @@ const FAQ = [
     a: "Our offerings are private placements. Most are available to accredited investors, and some are offered privately to investors who have an established relationship with us. That is why every investor relationship starts with a conversation.",
   },
   {
-    q: "What happens after I get access?",
-    a: "You can browse our full portfolio and investor guide right away. We will reach out to schedule a short call, or you can book one yourself. When an opportunity fits your goals, you will receive the full offering documents and an invitation to the investor webinar.",
+    q: "What happens after I request access?",
+    a: "You can browse our current portfolio and every free guide right away, and the newsletter starts arriving in your inbox. We will reach out to schedule a short call, or you can book one yourself. When an opportunity fits your goals, you will receive the full offering documents and an invitation to the investor webinar.",
   },
   {
     q: "How do investors get paid?",
@@ -44,9 +44,9 @@ export default function InvestPage() {
   return (
     <>
       <PageHero
-        eyebrow="Get access"
+        eyebrow="Request access"
         title={<>Start with a <em>conversation.</em></>}
-        lede="Share a few details to unlock our portfolio and investor guide. Then book a short call with our team. Accredited status is a follow up question, never a gate."
+        lede="Share a few details to unlock our current portfolio, our free guides, and the newsletter. Then book a short call with our team. Accredited status is a follow up question, never a gate."
       />
 
       <section className="section" id="book">
@@ -55,12 +55,16 @@ export default function InvestPage() {
             <span className="eyebrow">Interested in partnering with us?</span>
             <h2>What you unlock.</h2>
             <ul className="checks mt-2">
-              <li>Our full portfolio of properties and funds</li>
-              <li>The Passive Real Estate Investing Guide</li>
+              <li>Our current portfolio of properties and funds</li>
+              <li>The Passive Real Estate Investing Guide, plus our guides for sales professionals and 1031 exchanges</li>
+              <li>The newsletter: short, educational emails from Jeremy</li>
               <li>A 1 on 1 call with a member of our team</li>
               <li>Invitations to investor webinars when an opportunity fits</li>
             </ul>
             <p className="muted mt-2 small">
+              Would rather talk first? <Link href={cta.secondary.href} className="text-link">{cta.secondary.label}</Link>
+            </p>
+            <p className="muted mt-1 small">
               Already investing with us? <a href={links.investorLogin} target="_blank" rel="noopener" className="text-link">Log in to your investor portal</a>
             </p>
           </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { book, disclaimer, flags, links, podcast, reviews, rise48, stats, statsUpdated, taxNote, team } from "@/config/site";
+import { book, cta, disclaimer, flags, links, reviews, rise48, stats, statsUpdated, taxNote, team } from "@/config/site";
 import AccessForm from "./AccessForm";
 import styles from "./Blocks.module.css";
 
@@ -53,6 +53,48 @@ export function TrustStrip({ dark }: { dark?: boolean }) {
       </div>
       <p className="note-updated">Figures as of {statsUpdated}. Past performance is not indicative of future results.</p>
     </div>
+  );
+}
+
+/** The three calls to action in Jeremy's order: request access, book a call, then the newsletter as a quiet text link. */
+export function CtaButtons({ dark = true, newsletter = true }: { dark?: boolean; newsletter?: boolean }) {
+  return (
+    <div className={styles.ctaButtons}>
+      <div className="btn-row">
+        <Link href={cta.primary.href} className={`btn ${dark ? "btn-gold" : "btn-navy"}`}>{cta.primary.label} <span className="arrow">→</span></Link>
+        <Link href={cta.secondary.href} className="btn btn-ghost">{cta.secondary.label}</Link>
+      </div>
+      {newsletter ? (
+        <p className={styles.ctaQuiet}>
+          Not ready to talk yet? <Link href={cta.tertiary.href} className="text-link">{cta.tertiary.label}</Link>
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+/** Slim "Powered by Rise48 Equity" credit, the Elevest pattern: the operator is named plainly without taking over the page. */
+export function PoweredBy() {
+  const set = rise48.sets[rise48.approvedSet];
+  return (
+    <section className={`section-sm ${styles.powered}`} aria-label="Powered by Rise48 Equity">
+      <div className={`wrap ${styles.poweredInner}`}>
+        <div className={styles.poweredBrand}>
+          <span className="eyebrow">Powered by</span>
+          <Image src="/brand/rise48.png" alt="Rise48 Equity" width={200} height={79} />
+        </div>
+        <p className={styles.poweredCopy}>
+          Every opportunity we share is operated by Rise48 Equity, a vertically integrated multifamily operator in {rise48.markets}. The fund operator and the deal operator are one team, and Starting Point Capital invests alongside you in every deal.{" "}
+          <Link href="/about#rise48" className="text-link">How the partnership works</Link>
+        </p>
+        <ul className={styles.poweredStats}>
+          {set.slice(0, 3).map((s) => (
+            <li key={s.label}><strong>{s.value}</strong><span>{s.label}</span></li>
+          ))}
+        </ul>
+      </div>
+      <p className={`wrap note-updated ${styles.poweredNote}`}>Rise48 Equity figures as reported by Rise48, {rise48.updated}.</p>
+    </section>
   );
 }
 
@@ -126,7 +168,7 @@ export function Pillars() {
 }
 
 const STEPS = [
-  { title: "Get access", body: "Share a few details to unlock our portfolio, investor guide, and educational resources." },
+  { title: "Request access", body: "Share a few details to unlock our current portfolio, free guides, and newsletter." },
   { title: "Meet the team", body: "A short call to understand your goals, timeline, and questions. No pressure, ever." },
   { title: "Review the opportunity", body: "When a deal fits, you receive the full offering documents, webinar, and Q&A with the operator." },
   { title: "Invest through the portal", body: "Sign and fund securely online, then track distributions and reports in your investor portal." },
@@ -155,15 +197,16 @@ export function StoryBlock() {
             <Image src="/team/jeremy-portrait.jpg" alt="Jeremy Dyer, Founder of Starting Point Capital" fill sizes="(max-width: 1020px) 100vw, 55vw" style={{ objectFit: "cover", objectPosition: "50% 20%" }} />
           </div>
           <div className="offset-panel reveal">
-            <span className="eyebrow">One of you</span>
-            <h2 style={{ fontSize: "clamp(1.9rem, 3.4vw, 2.7rem)" }}>A side hustle that became the <em>main hustle.</em></h2>
+            <span className="eyebrow">I am one of you</span>
+            <h2 style={{ fontSize: "clamp(1.9rem, 3.4vw, 2.7rem)" }}>From chasing commission checks to <em>passive income.</em></h2>
             <p className="mt-2">
-              Jeremy Dyer spent 25 years in tech sales. He started flipping houses in 2012, moved to passive multifamily in 2015, and has since invested as an LP in 75+ deals. He invests his own money in every deal he brings to investors.
+              For 25 years I depended on a W2 and chased the next commission check. I had a good career in tech sales, and I wanted income that did not reset every quarter.
             </p>
             <p>
-              He started Starting Point Capital with a logo, a simple website, and a spreadsheet for a CRM. Almost every dollar since has come through relationships and referrals.
+              I scratched the entrepreneurial itch by owning real estate myself, starting with fix and flips in 2012. It worked, and it took a lot of my time. As life got busier with Marlene and our four kids, I moved to passive investing in 2015. Today I invest my own money in every deal we bring to investors.
             </p>
-            <Link href="/about" className="btn btn-ghost mt-1">Read our story <span className="arrow">→</span></Link>
+            <p className={styles.storySign}>Jeremy Dyer, Founder and Managing Partner</p>
+            <Link href="/about" className="btn btn-ghost light mt-1">Read our story <span className="arrow">→</span></Link>
           </div>
         </div>
       </div>
@@ -222,36 +265,35 @@ export function Reviews() {
   );
 }
 
+// Lead magnets in Jeremy's order (Oct 3): Investor Guide first, then the series, the book, and the sales professionals guide.
+const RESOURCES = [
+  { kind: "Free guide", title: "The Passive Real Estate Investing Guide", body: "A starting point for busy professionals who want cash flow without becoming a landlord.", href: "/guides/investor-guide", img: "/photos/creekside.jpg", alt: "Rise Creekside apartments", link: "Read the guide" },
+  { kind: "Free series", title: "Passive Investing Made Simple", body: "Short lessons that explain one concept at a time, starting with how to read the numbers on a deal.", href: "/resources#made-simple", img: "/photos/podcast.jpg", alt: "On the Rise Podcast with host Jeremy Dyer", link: "Start the series" },
+  { kind: "The book", title: book.title, body: `“${book.endorsement.quote}” ${book.endorsement.by}`, href: book.url, img: "/photos/book.jpg", alt: "The Fundamental Investor by Jeremy Dyer", link: "Order on Amazon", external: true },
+  { kind: "Free guide", title: "Passive Real Estate for Sales Professionals", body: "You built a career on pipeline and closing. Here is how to put that capital to work without a second job.", href: "/guides/sales-professionals", img: "/properties/rise-sunridge.jpg", alt: "Rise Sunridge apartments", link: "Read the guide" },
+];
+
 export function ResourceCards() {
   return (
-    <div className={styles.resources}>
-      <a href={book.url} target="_blank" rel="noopener" className={`reveal ${styles.resource}`}>
-        <div className={styles.resourceImg}><Image src="/photos/book.jpg" alt="The Fundamental Investor by Jeremy Dyer" fill sizes="(max-width: 1020px) 100vw, 33vw" style={{ objectFit: "cover" }} /></div>
-        <div className={styles.resourceBody}>
-          <span className={styles.resourceKind}>The book</span>
-          <h3>{book.title}</h3>
-          <p className="muted small">“{book.endorsement.quote}” {book.endorsement.by}</p>
-          <span className="text-link small">Order on Amazon</span>
-        </div>
-      </a>
-      <Link href="/podcast" className={`reveal ${styles.resource}`}>
-        <div className={styles.resourceImg}><Image src="/photos/podcast.jpg" alt="On the Rise Podcast with host Jeremy Dyer" fill sizes="(max-width: 1020px) 100vw, 33vw" style={{ objectFit: "cover" }} /></div>
-        <div className={styles.resourceBody}>
-          <span className={styles.resourceKind}>The podcast</span>
-          <h3>{podcast.name}</h3>
-          <p className="muted small">Conversations about building time freedom through passive real estate investing.</p>
-          <span className="text-link small">Listen now</span>
-        </div>
-      </Link>
-      <Link href="/guides/investor-guide" className={`reveal ${styles.resource}`}>
-        <div className={styles.resourceImg}><Image src="/photos/creekside.jpg" alt="Rise Creekside apartments" fill sizes="(max-width: 1020px) 100vw, 33vw" style={{ objectFit: "cover" }} /></div>
-        <div className={styles.resourceBody}>
-          <span className={styles.resourceKind}>Free guide</span>
-          <h3>Passive Real Estate Investing Guide</h3>
-          <p className="muted small">A starting point for busy professionals who want cash flow without becoming a landlord.</p>
-          <span className="text-link small">Read the guide</span>
-        </div>
-      </Link>
+    <div className={`${styles.resources} ${styles.resources4}`}>
+      {RESOURCES.map((r) => {
+        const inner = (
+          <>
+            <div className={styles.resourceImg}><Image src={r.img} alt={r.alt} fill sizes="(max-width: 640px) 100vw, (max-width: 1020px) 50vw, 25vw" style={{ objectFit: "cover" }} /></div>
+            <div className={styles.resourceBody}>
+              <span className={styles.resourceKind}>{r.kind}</span>
+              <h3>{r.title}</h3>
+              <p className="muted small">{r.body}</p>
+              <span className="text-link small">{r.link}</span>
+            </div>
+          </>
+        );
+        return r.external ? (
+          <a key={r.title} href={r.href} target="_blank" rel="noopener" className={`reveal ${styles.resource}`}>{inner}</a>
+        ) : (
+          <Link key={r.title} href={r.href} className={`reveal ${styles.resource}`}>{inner}</Link>
+        );
+      })}
     </div>
   );
 }
@@ -262,16 +304,20 @@ export function CtaBand({ title, lede, source = "cta-band" }: { title?: React.Re
       <div className={styles.ctaGlow} aria-hidden="true" />
       <div className="wrap split">
         <div>
-          <span className="eyebrow">Get access</span>
+          <span className="eyebrow">Request access</span>
           <h2>{title ?? <>Your starting point <em>starts here.</em></>}</h2>
           <p className="lede mt-2">
-            {lede ?? "Unlock our full portfolio and investor guide, then book a short call with the team. Accredited status is a follow up question, never a gate."}
+            {lede ?? "Request access to see our current portfolio, our free guides, and the newsletter, then book a short call with the team. Accredited status is a follow up question, never a gate."}
           </p>
           <ul className={`checks mt-3 ${styles.ctaList}`}>
             <li>See every property our investors have participated in</li>
-            <li>Get the Passive Real Estate Investing Guide</li>
+            <li>Get the investor guide and our other free guides</li>
+            <li>Receive the newsletter, short educational emails from Jeremy</li>
             <li>Meet the team on a 1 on 1 call</li>
           </ul>
+          <p className={`mt-2 ${styles.ctaQuiet}`}>
+            Rather talk first? <Link href={cta.secondary.href} className="text-link">{cta.secondary.label}</Link>
+          </p>
         </div>
         <AccessForm dark source={source} compact />
       </div>

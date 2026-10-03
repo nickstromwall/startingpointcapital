@@ -1,9 +1,8 @@
 import { podcast } from "@/config/site";
-import { getEpisodes } from "@/lib/podcast";
+import { getShownEpisodes, isPassiveInvestingMadeSimple } from "@/lib/podcast";
 import { pageMeta } from "@/lib/meta";
 import { CtaBand, Disclaimer, PageHero } from "@/components/Blocks";
 import EpisodeCard from "@/components/EpisodeCard";
-import EpisodeList from "@/components/EpisodeList";
 
 export const revalidate = 86400;
 export const metadata = pageMeta({
@@ -13,9 +12,12 @@ export const metadata = pageMeta({
   eyebrow: "The podcast",
 });
 
+// Only the latest few episodes live here (Jeremy, Oct 3). They come straight from the feed and refresh daily,
+// so publishing an episode is the only step. The full archive stays on the podcast apps.
 export default async function PodcastPage() {
-  const episodes = await getEpisodes();
-  const [latest, ...rest] = episodes;
+  const shown = (await getShownEpisodes()).slice(0, podcast.latestCount);
+  const [latest, ...rest] = shown;
+  const series = (await getShownEpisodes()).filter(isPassiveInvestingMadeSimple);
   return (
     <>
       <PageHero
@@ -37,11 +39,35 @@ export default async function PodcastPage() {
               <EpisodeCard e={latest} feature />
             </>
           ) : null}
-          <div className="mt-4">
-            <EpisodeList episodes={rest} />
-          </div>
+          {rest.length ? (
+            <div className="mt-4">
+              <span className="eyebrow">Recent episodes</span>
+              <div className="grid grid-3 mt-2">
+                {rest.map((e) => <EpisodeCard key={e.slug} e={e} />)}
+              </div>
+            </div>
+          ) : null}
+          <p className="muted mt-4">
+            Looking for an older conversation? Every episode is on{" "}
+            <a href={podcast.apple} target="_blank" rel="noopener" className="text-link">Apple Podcasts</a>,{" "}
+            <a href={podcast.spotify} target="_blank" rel="noopener" className="text-link">Spotify</a>, and{" "}
+            <a href={podcast.youtube} target="_blank" rel="noopener" className="text-link">YouTube</a>.
+          </p>
         </div>
       </section>
+      {series.length ? (
+        <section className="section">
+          <div className="wrap">
+            <div className="head">
+              <span className="eyebrow">Passive Investing Made Simple</span>
+              <h2>Short lessons, <em>one concept at a time.</em></h2>
+            </div>
+            <div className="grid grid-3">
+              {series.map((e) => <EpisodeCard key={e.slug} e={e} />)}
+            </div>
+          </div>
+        </section>
+      ) : null}
       <CtaBand source="podcast" title={<>Ready to go from <em>listening to investing?</em></>} />
       <Disclaimer />
     </>

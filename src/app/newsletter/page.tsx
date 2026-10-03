@@ -12,7 +12,7 @@ export const metadata = pageMeta({
 export default function NewsletterPage() {
   return (
     <>
-      <PageHero eyebrow="Newsletter" title={<>Learn passive investing, <em>one email at a time.</em></>} lede="Short, personal, educational emails every few days. No hype, no spam. Unsubscribe anytime." />
+      <PageHero eyebrow="Newsletter" title={<>Learn passive investing, <em>one email at a time.</em></>} lede="Short, personal, educational emails from Jeremy every few days. No hype, no spam. Unsubscribe anytime. Want our portfolio and free guides too? Request access instead, and the newsletter comes with it." />
       <section className="section bg-paper">
         <div className="wrap" style={{ maxWidth: 620 }}>
           <LeadForm source="newsletter" buttonLabel="Subscribe" success="You are subscribed. Check your inbox." unlocks />

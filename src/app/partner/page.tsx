@@ -1,13 +1,14 @@
 import { notFound } from "next/navigation";
-import { flags, rise48 } from "@/config/site";
+import { flags, links, rise48 } from "@/config/site";
 import { pageMeta } from "@/lib/meta";
 import { Disclaimer, PageHero } from "@/components/Blocks";
 import LeadForm from "@/components/LeadForm";
+import CalendlyEmbed from "@/components/CalendlyEmbed";
 import styles from "./partner.module.css";
 
 export const metadata = pageMeta({
   title: "Partner With Us",
-  description: "For professionals with a trusted network who want to build their own capital raising business, with a marketing team, back office, and operator behind them.",
+  description: "For capital partners: professionals with a trusted network who want to build their own capital raising business, with a marketing team, back office, and operator behind them.",
   path: "/partner",
   eyebrow: "Partner with us",
 });
@@ -31,18 +32,22 @@ export default function PartnerPage() {
   return (
     <>
       <PageHero
-        eyebrow="For capital raisers"
+        eyebrow="For capital partners"
         title={<>Your network. <em>Our platform.</em></>}
         lede="Many of our partners started exactly where you are: a successful career, a network that trusts them, and a desire to build something of their own. We make it possible to do that without building an operating company."
         photo="/properties/rise-avalon.jpg"
-      />
+      >
+        <div className="btn-row mt-3">
+          <a href="#apply" className="btn btn-gold">Book a partner call <span className="arrow">→</span></a>
+        </div>
+      </PageHero>
 
       <section className="section">
         <div className="wrap">
           <div className="head">
             <span className="eyebrow">How we partner</span>
             <h2>Everything behind you, <em>so you can lead.</em></h2>
-            <p className="lede">Join as a liaison or co manager. You bring the relationships. We bring the operator, the marketing, and the back office. Mostly, you invite people to a webinar and stay close to them.</p>
+            <p className="lede">Join as a capital partner, as a liaison or co manager. You bring the relationships. We bring the operator, the marketing, and the back office. Mostly, you invite people to a webinar and stay close to them.</p>
           </div>
           <div className="grid grid-4">
             {SUPPORT.map((s) => (
@@ -72,10 +77,14 @@ export default function PartnerPage() {
         <div className={`wrap ${styles.apply}`}>
           <div>
             <span className="eyebrow">Start a conversation</span>
-            <h2>Explore partnering with us.</h2>
-            <p className="lede mt-2">Tell us a little about yourself. Jeremy or a member of the team will reach out to set up a call.</p>
+            <h2>Book a call about partnering.</h2>
+            <p className="lede mt-2">Pick a time with Jeremy. We will talk about your background, your network, and how our capital partners work alongside us.</p>
+            <p className="muted mt-3">Prefer to write first? Tell us a little about yourself and we will reach out.</p>
+            <div className="mt-2">
+              <LeadForm source="partner" intent="partner" fields="contact" buttonLabel="Start the conversation" success="Thank you. We will reach out shortly." />
+            </div>
           </div>
-          <LeadForm source="partner" intent="partner" fields="contact" buttonLabel="Start the conversation" success="Thank you. We will reach out shortly." />
+          <CalendlyEmbed url={links.calendlyPartner} location="partner" height={760} />
         </div>
       </section>
       <Disclaimer />

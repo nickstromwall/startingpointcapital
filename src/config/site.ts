@@ -2,6 +2,7 @@
 //
 // Every stat, link, team member, and CTA lives here so values can change without touching layout.
 // Anything marked CONFIRM is a placeholder or unverified. Do not treat it as final until Nick or Jeremy signs off.
+// v2 follows Jeremy's answers from Oct 3, 2026 (see "v2 decisions" in README.md).
 // Copy rule for this file and the whole site: no em dashes or en dashes. Reword instead.
 
 export const site = {
@@ -18,10 +19,23 @@ export const site = {
   emailSignatureTagline: "Multifamily real estate investing. Partner with us on our next deal.",
 };
 
+/**
+ * Calls to action, in Jeremy's order of priority (Oct 3): request access, book a call, join the newsletter.
+ * Every page leads with `primary`, offers `secondary` next to it, and keeps `tertiary` as the quiet fallback.
+ */
+export const cta = {
+  primary: { label: "Request Access", href: "/invest" },
+  secondary: { label: "Book a call", href: "/book" },
+  tertiary: { label: "Join the newsletter", href: "/newsletter" },
+};
+
 export const links = {
   // CONFIRM: the site uses calendly.com/jeremy-rise48equity; Jeremy's email signature uses calendly.com/startingpointcapital.
   // Consider one routing link for the whole team instead of five separate calendars.
   calendly: "https://calendly.com/jeremy-rise48equity",
+  // CONFIRM: a separate Calendly event for capital partner conversations, so those bookings can be counted on their own.
+  // Until one exists, partner calls book on Jeremy's main link and are told apart by the GA4 `call_booked` path.
+  calendlyPartner: "https://calendly.com/jeremy-rise48equity",
   // CONFIRM: exact Fundamental Portal URL for the SPC instance (the call transcript was garbled).
   investorLogin: "https://startingpointcapital.fundamentalportal.com",
   // Additional portals, if any deals use a different provider. CONFIRM names and URLs.
@@ -45,6 +59,9 @@ export const podcast = {
   youtube: "https://www.youtube.com/@TheOnTheRisePodcast",
   // Old Faith Driven Leaders episode URLs forward here.
   faithDrivenLeaders: "https://faithdrivenleaderpodcast.com",
+  // Only the latest few episodes live on SPC (Jeremy, Oct 3). They refresh from the feed daily, so there is no weekly upkeep.
+  // Older episodes forward to /podcast, and the full archive stays on Apple, Spotify, and YouTube.
+  latestCount: 6,
   blurb:
     "Conversations about creating more time freedom through passive real estate investing. We created On the Rise to help you rethink conventional investing wisdom and learn from people who have done it.",
 };
@@ -79,8 +96,10 @@ export const stats = [
 ];
 
 /**
- * Rise48 Equity, our operating partner. CONFIRM which set Rise48 Marketing approves before launch.
- * Option A is the rise48equity.com fund of funds page. Option B is what Jeremy said on Sep 8, 2026.
+ * Rise48 Equity, our operating partner. SPC is "powered by Rise48 Equity," shown the way Elevest does it:
+ * a clear credit on every page and at the deal level, without Rise48 taking over the SPC brand.
+ * Jeremy confirmed Oct 3 that Rise48 Marketing does not need to approve the wording.
+ * Option A is the published rise48equity.com fund of funds page, so it is the default. Option B is what Jeremy said on Sep 8, 2026.
  */
 export const rise48 = {
   name: "Rise48 Equity",
@@ -118,7 +137,7 @@ export type TeamMember = {
   confirmed: boolean;
 };
 
-// CONFIRM the final roster, liaisons and co managers, and whether Nick appears.
+// Order confirmed by Jeremy (Oct 3): Jeremy is the lead voice, then Jerry, Nathan, Drew, Brad, and Marlene.
 export const team: TeamMember[] = [
   {
     slug: "jeremy-dyer",
@@ -190,8 +209,8 @@ export const team: TeamMember[] = [
     photo: "/team/brad.jpg",
     location: "Temecula, CA",
     calendly: "https://calendly.com/brad-mosley",
-    // CONFIRM Brad's title and whether he appears on the public team page.
-    confirmed: false,
+    // On the roster per Jeremy (Oct 3). CONFIRM his exact title.
+    confirmed: true,
     short:
       "Owned and operated a Great Clips franchise organization for more than two decades before becoming a passive real estate investor.",
     bio: [
@@ -216,13 +235,13 @@ export const team: TeamMember[] = [
 
 /** Feature flags for content waiting on a decision. */
 export const flags = {
-  // CONFIRM with Jeremy: show the fund manager and liaison path on SPC (vs only on Rise48 or Go Rise).
+  // Confirmed Oct 3: investors first, capital partners second. The partner path stays on SPC.
   showPartnerPath: true,
   // Hidden until real Google reviews exist. Never fabricate reviews.
   showReviews: false,
-  // CONFIRM with Rise48 Marketing: if false, portfolio names, photos, and locations sit behind the access form.
+  // Confirmed Oct 3: the portfolio, lead magnets, and newsletter unlock after the access form.
   publicPortfolioNames: false,
-  // Light touch on faith in the investor brand (story and podcast only) until Jeremy decides.
+  // Confirmed Oct 3: faith stays in the podcast, not in the investor facing brand.
   faithForward: false,
   // Exit intent / timed Investor Guide offer.
   guidePopup: true,
@@ -237,10 +256,10 @@ export const sdiraPartner = {
   url: "https://midlandtrust.com/startingpointcapital",
 };
 
+// Request Access sits in the header as the main button, so it is not repeated here.
 export const nav = [
   { href: "/about", label: "About" },
   { href: "/portfolio", label: "Portfolio" },
-  { href: "/invest", label: "Invest" },
   { href: "/resources", label: "Resources" },
   { href: "/podcast", label: "Podcast" },
 ];

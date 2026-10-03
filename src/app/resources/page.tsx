@@ -2,6 +2,7 @@ import Link from "next/link";
 import { guides } from "@/content/guides";
 import { allPosts } from "@/lib/blog";
 import { getEpisodes, isPassiveInvestingMadeSimple } from "@/lib/podcast";
+import { podcast } from "@/config/site";
 import { pageMeta } from "@/lib/meta";
 import { CtaBand, Disclaimer, PageHero, ResourceCards } from "@/components/Blocks";
 import EpisodeCard from "@/components/EpisodeCard";
@@ -9,13 +10,13 @@ import EpisodeCard from "@/components/EpisodeCard";
 export const revalidate = 86400;
 export const metadata = pageMeta({
   title: "Resources",
-  description: "Free guides, the Passive Investing Made Simple series, the On the Rise Podcast, our blog, and The Fundamental Investor.",
+  description: "The Investor Guide, the Passive Investing Made Simple series, The Fundamental Investor, our guide for sales professionals, and more.",
   path: "/resources",
   eyebrow: "Resources",
 });
 
 export default async function ResourcesPage() {
-  const series = (await getEpisodes()).filter(isPassiveInvestingMadeSimple).slice(0, 3);
+  const series = (await getEpisodes()).filter(isPassiveInvestingMadeSimple);
   return (
     <>
       <PageHero
@@ -30,7 +31,7 @@ export default async function ResourcesPage() {
         </div>
       </section>
 
-      <section className="section bg-paper">
+      <section className="section bg-paper" id="guides">
         <div className="wrap">
           <div className="head">
             <span className="eyebrow">Free guides</span>
@@ -49,20 +50,22 @@ export default async function ResourcesPage() {
         </div>
       </section>
 
-      {series.length ? (
-        <section className="section">
-          <div className="wrap">
-            <div className="head">
-              <span className="eyebrow">Passive Investing Made Simple</span>
-              <h2>Short lessons, <em>one concept at a time.</em></h2>
-              <p className="lede">Our educational series inside the On the Rise Podcast. Start with episode one.</p>
-            </div>
+      <section className="section" id="made-simple">
+        <div className="wrap">
+          <div className="head">
+            <span className="eyebrow">Passive Investing Made Simple</span>
+            <h2>Short lessons, <em>one concept at a time.</em></h2>
+            <p className="lede">Our educational series inside the On the Rise Podcast. New lessons appear here on their own as they are published.</p>
+          </div>
+          {series.length ? (
             <div className="grid grid-3">
               {series.map((e) => <EpisodeCard key={e.slug} e={e} />)}
             </div>
-          </div>
-        </section>
-      ) : null}
+          ) : (
+            <p className="muted">The first lessons are on their way. <a href={podcast.apple} target="_blank" rel="noopener" className="text-link">Follow the podcast</a> to hear them first.</p>
+          )}
+        </div>
+      </section>
 
       <section className="section bg-mist">
         <div className="wrap">
