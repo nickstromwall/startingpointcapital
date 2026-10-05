@@ -32,14 +32,15 @@ The build brief (BRIEF.md) is kept out of git because it contains private call n
 
 **Podcast upkeep:** none. Episodes come from the RSS feed and refresh once a day, so publishing an episode on Riverside is the only step. Set `latestCount` to show more or fewer.
 
-**30 email drip:** every access, guide, and newsletter signup is tagged `newsletter:subscribed` (HubSpot field `newsletter_opt_in`). Build the drip as a HubSpot workflow triggered by that tag.
+**Leads (HubSpot, verified Oct 5 with a Mickey Mouse test contact):** every form submits to the "SPC Lead Gen - Newsletter Form" in the Rise48 portal (5708005) and sets Tags to `SPC Newsletter/Prospect`, which starts the SPC email sequence. The site never sets `SPC Investor`; add that in HubSpot when someone invests. No env vars are needed. Optional `HUBSPOT_TOKEN` (private app with contacts read) lets the site keep a returning contact's existing tags instead of replacing them. Set `LEAD_PROVIDER=test` to stop forwarding (for local work).
 
 ## Environment variables (Vercel)
 
 | Variable | Purpose |
 |---|---|
-| `LEAD_PROVIDER` | `hubspot` or `ghl`. Unset = test mode (leads accepted and logged, not forwarded). |
-| `HUBSPOT_PORTAL_ID`, `HUBSPOT_FORM_ID` | HubSpot Forms API target (see `src/app/api/lead/route.ts` for field names). |
+| `LEAD_PROVIDER` | Unset = HubSpot (default). `ghl` for GoHighLevel, `test` to accept leads without forwarding. |
+| `HUBSPOT_TOKEN` | Optional private app token (contacts read). Keeps existing Tags on returning contacts. |
+| `HUBSPOT_PORTAL_ID`, `HUBSPOT_FORM_ID` | Optional overrides. Defaults live in `hubspot` in `src/config/site.ts`. |
 | `GHL_WEBHOOK_URL` | GoHighLevel inbound webhook, if switching to GHL. |
 | `TEST_WEBHOOK_URL` | Optional mirror of every lead (for example webhook.site) while testing. |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID. |
