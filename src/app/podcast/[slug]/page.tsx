@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { podcast } from "@/config/site";
-import { cleanNotes, formatDate, formatDuration, getEpisode, getShownEpisodes, summary } from "@/lib/podcast";
+import { cleanNotes, formatDate, formatDuration, getEpisode, getShownEpisodes, isPassiveInvestingMadeSimple, summary } from "@/lib/podcast";
+import PimsArt from "@/components/PimsArt";
 import { pageMeta } from "@/lib/meta";
 import { CtaBand, Disclaimer, PageHero } from "@/components/Blocks";
 import styles from "./episode.module.css";
@@ -45,7 +46,9 @@ export default async function EpisodePage({ params }: PageProps<"/podcast/[slug]
             <div className="prose mt-3" dangerouslySetInnerHTML={{ __html: cleanNotes(e.descriptionHtml) }} />
           </div>
           <aside className={styles.aside}>
-            {e.image ? <div className={styles.art}><Image src={e.image} alt="" fill sizes="320px" style={{ objectFit: "cover" }} /></div> : null}
+            {isPassiveInvestingMadeSimple(e) ? (
+              <div className={styles.art}><PimsArt lesson={e.title.match(/#\s*(\d+)/)?.[1]} /></div>
+            ) : e.image ? <div className={styles.art}><Image src={e.image} alt="" fill sizes="320px" style={{ objectFit: "cover" }} /></div> : null}
             <p className="small muted mt-2">Listen and subscribe</p>
             <div className={styles.listen}>
               <a href={podcast.apple} target="_blank" rel="noopener" className="btn btn-ghost btn-sm">Apple</a>

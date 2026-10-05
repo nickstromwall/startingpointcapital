@@ -62,6 +62,9 @@ export const podcast = {
   // Only the latest few episodes live on SPC (Jeremy, Oct 3). They refresh from the feed daily, so there is no weekly upkeep.
   // Older episodes forward to /podcast, and the full archive stays on Apple, Spotify, and YouTube.
   latestCount: 6,
+  // Passive Investing Made Simple: any feed episode whose title starts with this name joins the series automatically.
+  // Series art lives in src/components/PimsArt.tsx. Drop a real logo at /public/brand/pims-logo.png and set this to use it.
+  pimsLogo: "" as string,
   blurb:
     "Conversations about creating more time freedom through passive real estate investing. We created On the Rise to help you rethink conventional investing wisdom and learn from people who have done it.",
 };
@@ -83,14 +86,14 @@ export const book = {
  * Headline stats. `confirmed: false` values are placeholders until Nick or Jeremy signs off.
  * The homepage trust strip shows the first four entries whose `show` is true.
  */
-export const statsUpdated = "October 1, 2026";
+export const statsUpdated = "October 5, 2026";
 export const stats = [
-  { key: "capital", value: "$100M+", label: "Capital raised from our investor network", confirmed: true, show: true },
+  { key: "capital", value: "$100M+", label: "Capital placed from our investor network", confirmed: true, show: true },
   { key: "doors", value: "8,000+", label: "Multifamily doors invested in", confirmed: true, show: true },
-  // CONFIRM: "50+ passive multifamily deals" appears on the current homepage.
-  { key: "deals", value: "50+", label: "Passive real estate deals", confirmed: false, show: true },
-  // CONFIRM: Jeremy says "LP in 75+ deals" on calls.
-  { key: "lp", value: "75+", label: "Personal LP investments by our founder", confirmed: false, show: true },
+  // Removed from the site by Jeremy (Oct 5).
+  { key: "deals", value: "50+", label: "Passive real estate deals", confirmed: false, show: false },
+  // Wording from Jeremy (Oct 5).
+  { key: "lp", value: "75+", label: "Passive investments by our founder", confirmed: true, show: true },
   // CONFIRM: "Passive equity investor in over $1B in total assets" appears on the current homepage.
   { key: "assets", value: "$1B+", label: "Total assets invested in", confirmed: false, show: false },
 ];
@@ -107,9 +110,10 @@ export const rise48 = {
   approvedSet: "A" as "A" | "B",
   sets: {
     A: [
-      { value: "$2.6B+", label: "Total transactions" },
-      { value: "65+", label: "Assets" },
-      { value: "12,000+", label: "Units since 2019" },
+      // Updated by Jeremy (Oct 5).
+      { value: "$2.7B+", label: "Total transactions" },
+      { value: "70+", label: "Assets" },
+      { value: "13,000+", label: "Units" },
       { value: "11", label: "Full cycle dispositions" },
     ],
     B: [
@@ -120,7 +124,7 @@ export const rise48 = {
     ],
   },
   markets: "Arizona, Texas, and North Carolina",
-  updated: "October 1, 2026",
+  updated: "October 5, 2026",
 };
 
 export type TeamMember = {
@@ -152,7 +156,7 @@ export const team: TeamMember[] = [
       "Twenty five years in tech sales, then a passive investor in 75+ deals. Jeremy invests his own money in every deal he brings to investors.",
     bio: [
       "Jeremy Dyer is the Founder and Managing Partner of Starting Point Capital, where he leads investor relations, strategic partnerships, and marketing. He also serves as Vice President of Capital Formation at Rise48 Equity, hosts the On the Rise Podcast, and wrote The Fundamental Investor.",
-      "Before real estate, Jeremy spent 25 years in tech sales, most of them at ADP, where he was a consistent top performer. He holds a Bachelor of Science in Marketing from the Carlson School of Management.",
+      "Before real estate, Jeremy spent nearly 25 years in corporate and technology sales, most of them at ADP, where he was a consistent top performer. In 2024 he left his W-2 career to focus on real estate full time. He holds a Bachelor of Science in Marketing from the Carlson School of Management.",
       "Real estate investing requires confidence in a sponsor's competence, credibility, and integrity. Jeremy has seen the business from both sides, as an active investor who started with fix and flips and as a passive investor in more than 75 deals across asset classes.",
       "Jeremy lives in Lake Elmo, Minnesota with his wife Marlene, their four children, and their dog Bosco. He coaches his kids' teams, travels, stays active, and never misses date night.",
     ],

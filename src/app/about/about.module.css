@@ -1,5 +1,7 @@
 .portrait { position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; }
-.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
+/* Jeremy's story is long, so the portrait stays in view beside it on wide screens. */
+@media (min-width: 1021px) { .portrait { position: sticky; top: calc(var(--header-h) + 32px); align-self: start; } }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; }
 .timeline li { border-top: 2px solid var(--gold); padding-top: 20px; }
 .year { display: block; font-family: var(--cond); font-weight: 500; font-size: 2.2rem; line-height: 1; color: var(--navy); margin-bottom: 12px; }
 .timeline p { color: var(--muted); font-size: 0.92rem; margin: 0; }

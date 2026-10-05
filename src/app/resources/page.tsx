@@ -55,7 +55,7 @@ export default async function ResourcesPage() {
           <div className="head">
             <span className="eyebrow">Passive Investing Made Simple</span>
             <h2>Short lessons, <em>one concept at a time.</em></h2>
-            <p className="lede">Our educational series inside the On the Rise Podcast. New lessons appear here on their own as they are published.</p>
+            <p className="lede">A new lesson every month inside the On the Rise Podcast. Each one appears here on its own as soon as it is published.</p>
           </div>
           {series.length ? (
             <div className="grid grid-3">

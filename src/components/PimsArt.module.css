@@ -1,0 +1,11 @@
+.art {
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 14px;
+  padding: 10%; color: var(--white);
+  background: radial-gradient(120% 90% at 100% 0%, rgba(201, 167, 74, 0.22), transparent 55%), var(--navy-900);
+  container-type: inline-size;
+}
+.art::after { content: ""; position: absolute; left: 10%; bottom: 10%; width: 22%; height: 2px; background: var(--gold); }
+.kicker { font-family: var(--cond); font-size: clamp(0.62rem, 4.2cqi, 0.95rem); letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+.title { display: flex; flex-direction: column; font-weight: 300; font-size: clamp(1.1rem, 11cqi, 2.6rem); line-height: 1.05; }
+.title em { font-style: normal; font-weight: 600; color: var(--gold); }
+.lesson { font-family: var(--cond); font-size: clamp(0.62rem, 4.2cqi, 0.95rem); letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); }

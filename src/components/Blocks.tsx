@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { book, cta, disclaimer, flags, links, podcast, reviews, rise48, stats, statsUpdated, taxNote, team } from "@/config/site";
 import AccessForm from "./AccessForm";
+import PimsArt from "./PimsArt";
 import styles from "./Blocks.module.css";
 
 /** Dark page hero used on every page, so the transparent header always sits on navy or photography. */
@@ -112,7 +113,7 @@ export function Rise48Block({ compact }: { compact?: boolean }) {
           </div>
           <div className={`reveal ${styles.riseCopy}`}>
             <p className="lede">
-              Starting Point Capital raises capital alongside Rise48 Equity, a vertically integrated multifamily operator in {rise48.markets}. We do not hide that partnership. We lead with it.
+              Starting Point Capital raises capital alongside Rise48 Equity, a vertically integrated multifamily operator in {rise48.markets}.
             </p>
             <p className="muted">
               The fund operator and the deal operator are one and the same team. Rise48 finds, finances, renovates, and manages the properties. We walk with our investors from the first conversation through every distribution.
@@ -200,10 +201,10 @@ export function StoryBlock() {
             <span className="eyebrow">I am one of you</span>
             <h2 style={{ fontSize: "clamp(1.9rem, 3.4vw, 2.7rem)" }}>From chasing commission checks to <em>passive income.</em></h2>
             <p className="mt-2">
-              For 25 years I depended on a W2 and chased the next commission check. I had a good career in tech sales, and I wanted income that did not reset every quarter.
+              I spent nearly 25 years in corporate and technology sales. It was a great career that provided well for my family, but our financial future depended on my next paycheck. If I had a bad month, the commission checks stopped too.
             </p>
             <p>
-              I scratched the entrepreneurial itch by owning real estate myself, starting with fix and flips in 2012. It worked, and it took a lot of my time. As life got busier with Marlene and our four kids, I moved to passive investing in 2015. Today I invest my own money in every deal we bring to investors.
+              My real estate journey started in 2012 with fix and flips. I loved the entrepreneurial side, but active investing became another job. As life got busier with Marlene and our four kids, I moved into passive investing. Today I invest my own money right alongside our investors.
             </p>
             <p className={styles.storySign}>Jeremy Dyer, Founder and Managing Partner</p>
             <Link href="/about" className="btn btn-ghost light mt-1">Read our story <span className="arrow">→</span></Link>
@@ -269,7 +270,7 @@ export function Reviews() {
 // Oct 5: Passive Investing Made Simple and the On the Rise Podcast are separate cards, five in all.
 const RESOURCES = [
   { kind: "Free guide", title: "The Passive Real Estate Investing Guide", body: "A starting point for busy professionals who want cash flow without becoming a landlord.", href: "/guides/investor-guide", img: "/photos/creekside.jpg", alt: "Rise Creekside apartments", link: "Read the guide" },
-  { kind: "Free series", title: "Passive Investing Made Simple", body: "Short lessons that explain one concept at a time, starting with how to read the numbers on a deal.", href: "/resources#made-simple", img: "/properties/rise-heather-ridge.jpg", alt: "Rise Heather Ridge apartments", link: "Start the series" },
+  { kind: "Free series", title: "Passive Investing Made Simple", body: "Short lessons that explain one concept at a time, starting with how to read the numbers on a deal.", href: "/resources#made-simple", img: "", alt: "", link: "Start the series", pims: true },
   { kind: "The podcast", title: podcast.name, body: "Conversations about building time freedom through passive real estate investing, hosted by Jeremy.", href: "/podcast", img: "/photos/podcast.jpg", alt: "On the Rise Podcast with host Jeremy Dyer", link: "Listen now" },
   { kind: "The book", title: book.title, body: `“${book.endorsement.quote}” ${book.endorsement.by}`, href: book.url, img: "/photos/book.jpg", alt: "The Fundamental Investor by Jeremy Dyer", link: "Order on Amazon", external: true },
   { kind: "Free guide", title: "Passive Real Estate for Sales Professionals", body: "You built a career on pipeline and closing. Here is how to put that capital to work without a second job.", href: "/guides/sales-professionals", img: "/properties/rise-sunridge.jpg", alt: "Rise Sunridge apartments", link: "Read the guide" },
@@ -281,7 +282,7 @@ export function ResourceCards() {
       {RESOURCES.map((r) => {
         const inner = (
           <>
-            <div className={styles.resourceImg}><Image src={r.img} alt={r.alt} fill sizes="(max-width: 640px) 100vw, (max-width: 1020px) 50vw, 20vw" style={{ objectFit: "cover" }} /></div>
+            <div className={styles.resourceImg}>{r.pims ? <PimsArt /> : <Image src={r.img} alt={r.alt} fill sizes="(max-width: 640px) 100vw, (max-width: 1020px) 50vw, 20vw" style={{ objectFit: "cover" }} />}</div>
             <div className={styles.resourceBody}>
               <span className={styles.resourceKind}>{r.kind}</span>
               <h3>{r.title}</h3>

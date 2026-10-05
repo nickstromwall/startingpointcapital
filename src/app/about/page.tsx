@@ -13,10 +13,11 @@ export const metadata = pageMeta({
 });
 
 const MILESTONES = [
-  { year: "25 yrs", text: "Jeremy builds a career in tech sales, most of it at ADP, living on a W2 and the next commission check." },
-  { year: "2012", text: "Scratches the entrepreneurial itch with fix and flips and active real estate ownership. Learns what it really costs in time." },
-  { year: "2015", text: "As life gets busier with four kids, shifts to passive multifamily investing as a limited partner." },
-  { year: "Then", text: "Raises capital for other operators, and starts Starting Point Capital with a logo, a simple website, and a spreadsheet for a CRM." },
+  { year: "25 yrs", text: "Jeremy builds a career in corporate and technology sales, most of it at ADP, living on the next paycheck and commission check." },
+  { year: "2012", text: "Starts with fix and flips. Loves the entrepreneurial side, and learns that active investing can become another job." },
+  { year: "Then", text: "As life gets busier with Marlene and four kids, moves into passive real estate investing." },
+  { year: "Next", text: "Raises capital for other operators, and starts Starting Point Capital with a logo, a simple website, and a spreadsheet for a CRM." },
+  { year: "2024", text: "Leaves his W-2 career behind and goes all in on real estate." },
   { year: "Today", text: "Brings Starting Point Capital and Rise48 Equity together. The side hustle becomes the main hustle, and a team of partners grows around it." },
 ];
 
@@ -38,17 +39,33 @@ export default function AboutPage() {
             <h2>“My biggest value is that <em>I am one of you.</em>”</h2>
             <div className="mt-3">
               <p className="lede">
-                I spent 25 years in tech sales, most of them at ADP. It was a good career, but my family depended on a W2 and on chasing the next commission check. I wanted income that kept coming whether or not I closed a deal that quarter.
+                I spent nearly 25 years in corporate and technology sales. It was a great career that provided well for my family, but there was always one reality I couldn’t escape:
+              </p>
+              <p className="lede"><strong>Our financial future depended on my next paycheck.</strong></p>
+              <p className="muted">If I stopped selling or had a bad month, the commission checks stopped too.</p>
+              <p className="muted">
+                I wanted to build something different. I wanted my money working as hard as I was, and eventually, I wanted the freedom to choose how I spent my time.
               </p>
               <p className="muted">
-                Real estate scratched my entrepreneurial itch. I started with fix and flips in 2012 and learned how much of my time active ownership really takes. As life got busier with Marlene and our four kids, I made the move to passive investing in 2015.
+                My real estate journey started in 2012 with fix and flips. I loved the entrepreneurial side of real estate, but I quickly learned that active investing can become another job. As life got busier with my wife, Marlene, and our four kids, I transitioned into passive real estate investing.
+              </p>
+              <p className="muted"><strong>That decision changed the trajectory of my life.</strong></p>
+              <p className="muted">
+                Over the years, I’ve invested across more than 75 properties and built relationships with operators, investors and capital partners across the country. In 2024, I made the leap I had been working toward for years: I left my W-2 career behind and went all in on real estate.
               </p>
               <p className="muted">
-                Today I invest my own money in every deal we bring to investors. I get paid twice: once as a partner and once as an investor right alongside you. Nearly all of the $100M+ our network has invested came through relationships and referrals, not cold outreach.
+                Today, I invest my own money alongside our investors, and our network has invested more than $100 million into real estate opportunities. Nearly all of that growth has come through relationships and referrals.
               </p>
+              <p className="muted"><strong>That’s why I created Starting Point Capital.</strong></p>
               <p className="muted">
-                That is why I started Starting Point Capital. The people we serve are busy professionals, sales leaders, and business owners who want what I wanted: their time back, and their money working without a second job. I am one of them.
+                We serve busy professionals, sales leaders and business owners who have spent years building successful careers but recognize that a high income and financial freedom are not the same thing.
               </p>
+              <p className="muted">They don’t necessarily want another job managing properties.</p>
+              <p className="muted">
+                They want access to opportunities. They want education. They want experienced partners they can trust. And ultimately, they want more control over their time.
+              </p>
+              <p className="muted">I understand that because I lived it for 25 years.</p>
+              <p className="lede"><strong>I’m not just someone bringing you investments. I’m an investor right alongside you.</strong></p>
               <p className="small mt-2" style={{ fontFamily: "var(--cond)", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--gold-deep)" }}>
                 {jeremy.name}, {jeremy.role}
               </p>
