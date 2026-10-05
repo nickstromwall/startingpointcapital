@@ -1,14 +1,4 @@
-// Receives every form on the site and forwards it to the CRM.
-//
-// The provider is swappable with one env var, because a Rise wide HubSpot to GoHighLevel move is being discussed:
-//   LEAD_PROVIDER=hubspot  -> HubSpot Forms API. Needs HUBSPOT_PORTAL_ID and HUBSPOT_FORM_ID.
-//                             Create the form in HubSpot with these fields: firstname, lastname, email, phone,
-//                             accredited_investor, newsletter_opt_in, lead_source, lead_intent, resource, utm_source, utm_medium,
-//                             utm_campaign, utm_term, utm_content. Katie's workflows then pick it up.
-//   LEAD_PROVIDER=ghl      -> GoHighLevel inbound webhook. Needs GHL_WEBHOOK_URL. Branch on `tags` in the workflow.
-//   (unset)                -> test mode: the lead is accepted and logged, not forwarded. Good for previews.
-//
-// Optional TEST_WEBHOOK_URL mirrors every lead to a test endpoint (for example webhook.site) while we verify.
+import { forwardLead } from "@/lib/leads";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"] as const;
@@ -82,60 +72,8 @@ export async function POST(request: Request) {
     submittedAt: new Date().toISOString(),
   };
 
-  const provider = (process.env.LEAD_PROVIDER ?? "").toLowerCase();
-  try {
-    if (process.env.TEST_WEBHOOK_URL) await post(process.env.TEST_WEBHOOK_URL, lead).catch(() => {});
-    if (provider === "hubspot") await toHubSpot(lead, request);
-    else if (provider === "ghl") await post(requireEnv("GHL_WEBHOOK_URL"), lead);
-    else {
-      console.warn("[lead] LEAD_PROVIDER not set; lead accepted in test mode", { source, intent, tags });
-      return Response.json({ ok: true, forwarded: false });
-    }
-  } catch (err) {
-    console.error("[lead] forward failed", err);
-    return Response.json({ ok: false, error: "Something went wrong. Please try again or email us." }, { status: 502 });
-  }
-  return Response.json({ ok: true, forwarded: true });
-}
-
-function requireEnv(name: string) {
-  const v = process.env[name];
-  if (!v) throw new Error(`${name} is not set`);
-  return v;
-}
-
-async function post(url: string, data: unknown) {
-  const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-  if (!res.ok) throw new Error(`${new URL(url).host} responded ${res.status}`);
-}
-
-type Lead = {
-  email: string; firstName?: string; lastName?: string; phone?: string; consent: boolean; newsletter: boolean; accredited?: string;
-  source: string; intent: string; resource?: string; message?: string; page?: string; utm: Record<string, string>;
-};
-
-async function toHubSpot(lead: Lead, request: Request) {
-  const portal = requireEnv("HUBSPOT_PORTAL_ID");
-  const form = requireEnv("HUBSPOT_FORM_ID");
-  const fields: Record<string, string | undefined> = {
-    email: lead.email,
-    firstname: lead.firstName,
-    lastname: lead.lastName,
-    phone: lead.phone,
-    accredited_investor: lead.accredited,
-    newsletter_opt_in: lead.newsletter ? "true" : undefined,
-    lead_source: lead.source,
-    lead_intent: lead.intent,
-    resource: lead.resource,
-    message: lead.message,
-    ...lead.utm,
-  };
-  const cookie = request.headers.get("cookie")?.match(/hubspotutk=([^;]+)/)?.[1];
-  await post(`https://api.hsforms.com/submissions/v3/integration/submit/${portal}/${form}`, {
-    fields: Object.entries(fields).filter(([, v]) => v).map(([name, value]) => ({ name, value })),
-    context: { pageUri: lead.page ? `https://www.startingpointcapital.com${lead.page}` : undefined, hutk: cookie },
-    legalConsentOptions: lead.consent
-      ? { consent: { consentToProcess: true, text: "I agree to receive emails, texts, and calls from Starting Point Capital." } }
-      : undefined,
-  });
+  const result = await forwardLead(lead, request.headers.get("cookie"));
+  return result.ok
+    ? Response.json({ ok: true, forwarded: result.forwarded })
+    : Response.json({ ok: false, error: "Something went wrong. Please try again or email us." }, { status: 502 });
 }

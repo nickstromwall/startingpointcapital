@@ -233,6 +233,28 @@ export const team: TeamMember[] = [
   },
 ];
 
+/**
+ * HubSpot (Rise48 portal 5708005). Every form on the site submits to the existing "SPC Lead Gen - Newsletter Form".
+ * New leads get ONE tag: "SPC Newsletter/Prospect", which starts the SPC email sequence.
+ * "SPC Investor" is never set by the site. The team adds it in HubSpot once someone actually invests.
+ * Tags live in the contact property "Tags" (internal name new_lead_status), a multiple checkbox.
+ */
+export const hubspot = {
+  portalId: "5708005",
+  formId: "cf7a5725-6de4-4101-a81d-cef424509522",
+  tagProperty: "new_lead_status",
+  prospectTag: "SPC Newsletter/Prospect",
+  investorTag: "SPC Investor",
+  // This portal stores UTMs in custom properties with generated names.
+  utmProperties: {
+    utm_source: "a4b2e62ec2d44350aa266eaf25f2837d56758161",
+    utm_medium: "h489e1686b263c91ad724f16144dd63381d35f110",
+    utm_campaign: "h0b59eb203725c81a009aaec9c4ba9c621fc6994b",
+    utm_term: "f8ca392083b6bf5e73b0c8a9661881e70334a1cf",
+    utm_content: "c98cf36d64c112db72e08b9e70ea9359a771d95a",
+  } as Record<string, string>,
+};
+
 /** Feature flags for content waiting on a decision. */
 export const flags = {
   // Confirmed Oct 3: investors first, capital partners second. The partner path stays on SPC.
