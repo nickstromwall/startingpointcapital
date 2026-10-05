@@ -41,4 +41,8 @@ export const legacyRedirects: Redirect[] = [
   ...retiredEpisodes.map((s) => ({ source: `/episodes/${s}`, destination: "/podcast", permanent: true })),
   // Every other old episode kept its slug.
   { source: "/episodes/:slug", destination: "/podcast/:slug", permanent: true },
+  // Squarespace tag and category pages, and old slugs that contained a slash.
+  { source: "/episodes/:path*", destination: "/podcast", permanent: true },
+  { source: "/blog/tag/:path*", destination: "/blog", permanent: true },
+  { source: "/blog/category/:path*", destination: "/blog", permanent: true },
 ];

@@ -7,3 +7,4 @@
 .faq details[open] summary::after { transform: rotate(45deg); }
 .faq p { color: var(--muted); padding-bottom: 18px; }
 @media (max-width: 1020px) { .layout { grid-template-columns: 1fr; } }
+.layout > * { min-width: 0; }

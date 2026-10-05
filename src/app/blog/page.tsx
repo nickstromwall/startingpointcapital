@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { allPosts, formatDate } from "@/lib/blog";
+import { allPosts, formatDate, excerpt } from "@/lib/blog";
 import { pageMeta } from "@/lib/meta";
 import { CtaBand, Disclaimer, PageHero } from "@/components/Blocks";
 
@@ -21,7 +21,7 @@ export default function BlogPage() {
               <Link key={p.slug} href={`/blog/${p.slug}`} className="card reveal" style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: 10 }}>
                 <p className="small" style={{ margin: 0, fontFamily: "var(--cond)", letterSpacing: ".14em", textTransform: "uppercase", color: "var(--gold-deep)" }}>{formatDate(p.date)}</p>
                 <h3>{p.title}</h3>
-                <p className="small">{p.description.slice(0, 160)}</p>
+                <p className="small">{excerpt(p, 160)}</p>
               </Link>
             ))}
           </div>

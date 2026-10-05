@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { taxNote } from "@/config/site";
-import { allPosts, formatDate, getPost, reviewSlugs } from "@/lib/blog";
+import { allPosts, formatDate, getPost, reviewSlugs, excerpt } from "@/lib/blog";
 import { pageMeta } from "@/lib/meta";
 import { CtaBand, Disclaimer, PageHero } from "@/components/Blocks";
 
@@ -13,7 +13,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/blog/[slug]">) {
   const p = getPost((await params).slug);
   if (!p) return {};
-  return pageMeta({ title: p.title, description: p.description.slice(0, 160), path: `/blog/${p.slug}`, eyebrow: "The blog" });
+  return pageMeta({ title: p.title, description: excerpt(p), path: `/blog/${p.slug}`, eyebrow: "The blog" });
 }
 
 const ALLOWED = new Set(["h2", "h3", "h4", "p", "li", "blockquote"]);

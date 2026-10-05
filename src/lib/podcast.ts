@@ -156,6 +156,8 @@ export function cleanNotes(html: string) {
   return html
     .replace(/<(script|style|iframe)[\s\S]*?<\/\1>/gi, "")
     .replace(/<(\/?)(?!(?:p|br|ul|ol|li|strong|b|em|i|a)\b)[a-z0-9]+[^>]*>/gi, "")
+    // Show notes sometimes link an email address as https://name@domain.com. Turn those into mailto links.
+    .replace(/<a\s+[^>]*href="https?:\/\/([^/"@\s]+@[^/"\s]+?)\/?"[^>]*>/gi, '<a href="mailto:$1">')
     .replace(/<a\s+[^>]*href="(https?:\/\/[^"]+)"[^>]*>/gi, '<a href="$1" target="_blank" rel="noopener nofollow">')
     .replace(/\son\w+="[^"]*"/gi, "")
     .replace(/&#8212;|&#8211;|&mdash;|&ndash;|[\u2013\u2014]/g, ", ");

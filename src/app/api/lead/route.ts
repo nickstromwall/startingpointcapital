@@ -1,4 +1,7 @@
 import { forwardLead } from "@/lib/leads";
+import { clientIp, rateLimited } from "@/lib/rateLimit";
+
+const MAX_BODY = 16_000; // bytes; a real form submission is well under 4KB
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"] as const;
@@ -24,9 +27,17 @@ const clip = (v: unknown, n: number) => (typeof v === "string" ? v.trim().slice(
 const tagSafe = (v: string) => v.replace(/[^a-z0-9-]/gi, "").slice(0, 60);
 
 export async function POST(request: Request) {
+  const ip = clientIp(request);
+  // Loose cap on every request (stops fuzzing), tighter cap on accepted leads below (stops CRM flooding).
+  if (rateLimited(`all:${ip}`, 30)) {
+    return Response.json({ ok: false, error: "Too many submissions. Please try again in a few minutes or email us." }, { status: 429 });
+  }
   let body: LeadBody;
   try {
-    body = await request.json();
+    const raw = await request.text();
+    if (raw.length > MAX_BODY) return Response.json({ ok: false, error: "Request too large." }, { status: 413 });
+    body = JSON.parse(raw);
+    if (!body || typeof body !== "object" || Array.isArray(body)) throw new Error("not an object");
   } catch {
     return Response.json({ ok: false, error: "Invalid request." }, { status: 400 });
   }
@@ -44,6 +55,10 @@ export async function POST(request: Request) {
 
   if (!EMAIL_RE.test(email)) return Response.json({ ok: false, error: "Please enter a valid email." }, { status: 400 });
   if (!isFollowUp && !firstName) return Response.json({ ok: false, error: "Please enter your first name." }, { status: 400 });
+
+  if (rateLimited(`lead:${ip}`, 6)) {
+    return Response.json({ ok: false, error: "Too many submissions. Please try again in a few minutes or email us." }, { status: 429 });
+  }
 
   const utm = Object.fromEntries(UTM_KEYS.map((k) => [k, clip(body.utm?.[k], 120)]).filter(([, v]) => v));
   const tags = [

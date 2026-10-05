@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/podcast/[slug]">) {
   const e = await getEpisode((await params).slug);
   if (!e) return {};
-  return pageMeta({ title: e.title, description: summary(e, 155), path: `/podcast/${e.slug}`, eyebrow: podcast.name });
+  return pageMeta({ title: e.title, description: summary(e, 155).length >= 50 ? summary(e, 155) : `${e.title}. An episode of the ${podcast.name} with Jeremy Dyer.`, path: `/podcast/${e.slug}`, eyebrow: podcast.name });
 }
 
 export default async function EpisodePage({ params }: PageProps<"/podcast/[slug]">) {

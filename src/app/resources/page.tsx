@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { guides } from "@/content/guides";
-import { allPosts } from "@/lib/blog";
+import { allPosts, excerpt } from "@/lib/blog";
 import { getEpisodes, isPassiveInvestingMadeSimple } from "@/lib/podcast";
 import { podcast } from "@/config/site";
 import { pageMeta } from "@/lib/meta";
@@ -80,7 +80,7 @@ export default async function ResourcesPage() {
             {allPosts.slice(0, 6).map((p) => (
               <Link key={p.slug} href={`/blog/${p.slug}`} className="card reveal" style={{ textDecoration: "none" }}>
                 <h3>{p.title}</h3>
-                <p className="mt-1 small">{p.description.slice(0, 140)}</p>
+                <p className="mt-1 small">{excerpt(p, 140)}</p>
               </Link>
             ))}
           </div>

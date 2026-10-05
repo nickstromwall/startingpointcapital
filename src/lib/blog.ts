@@ -8,6 +8,13 @@ export type Post = { slug: string; title: string; date: string; description: str
 export const allPosts = posts as Post[];
 export const getPost = (slug: string) => allPosts.find((p) => p.slug === slug);
 
+/** Short summary for cards and meta descriptions. Many imported posts had no description, so fall back to the opening paragraph. */
+export function excerpt(p: Post, max = 155) {
+  const source = p.description.trim().length >= 50 ? p.description : (p.blocks.find(([tag, inner]) => tag === "p" && inner.length > 60)?.[1] ?? p.title);
+  const text = source.replace(/<[^>]+>/g, "").replace(/&[a-z#0-9]+;/gi, " ").replace(/\s+/g, " ").trim();
+  return text.length > max ? `${text.slice(0, max).replace(/\s+\S*$/, "")}…` : text;
+}
+
 /** Posts that use hypothetical numbers or dated tax figures. They show an extra note and need Rise48 Marketing review. */
 export const reviewSlugs = new Set([
   "7-eye-opening-things-every-passive-real-estate-investor-should-know-about-taxes",

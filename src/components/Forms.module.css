@@ -19,3 +19,5 @@
 .unlocked a::after { content: "  →"; color: var(--gold); }
 .book { margin-top: 28px; }
 @media (max-width: 640px) { .choices :global(.btn) { width: 100%; } }
+.box iframe { max-width: 100%; }
+@media (max-width: 380px) { .box { padding: 20px 16px; } }

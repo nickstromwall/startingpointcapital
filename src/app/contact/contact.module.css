@@ -1,4 +1,5 @@
 .layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
+.layout > * { min-width: 0; }
 .people { list-style: none; padding: 0; margin: 28px 0 0; }
 .people li { display: grid; grid-template-columns: 64px 1fr auto; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .people strong { display: block; }
@@ -7,5 +8,11 @@
 .direct { margin-top: 36px; }
 .direct p { display: flex; gap: 16px; margin: 0 0 10px; }
 .direct span { width: 90px; flex: none; font-family: var(--cond); letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-deep); }
-.direct a { color: var(--ink); }
+.direct a { color: var(--ink); overflow-wrap: anywhere; min-width: 0; }
 @media (max-width: 1020px) { .layout { grid-template-columns: 1fr; } }
+@media (max-width: 380px) {
+  .people li { grid-template-columns: 44px 1fr auto; gap: 12px; }
+  .avatar { width: 44px; height: 44px; }
+  .people :global(.btn-sm) { padding: 0 14px; }
+  .direct span { width: 72px; }
+}

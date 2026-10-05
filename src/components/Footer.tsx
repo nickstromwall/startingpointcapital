@@ -16,7 +16,7 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <h4>Invest</h4>
+            <h2 className={styles.colTitle}>Invest</h2>
             <ul>
               <li><Link href="/invest">Request access</Link></li>
               <li><Link href="/book">Book a call</Link></li>
@@ -26,7 +26,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4>Learn</h4>
+            <h2 className={styles.colTitle}>Learn</h2>
             <ul>
               <li><Link href="/resources">Resources</Link></li>
               <li><Link href="/guides/investor-guide">Investor guide</Link></li>
@@ -37,7 +37,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4>Company</h4>
+            <h2 className={styles.colTitle}>Company</h2>
             <ul>
               <li><Link href="/about">About</Link></li>
               {flags.showPartnerPath ? <li><Link href="/partner">Partner With Us</Link></li> : null}

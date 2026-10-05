@@ -6,3 +6,4 @@
 .art { position: relative; aspect-ratio: 1 / 1; border-radius: var(--radius); overflow: hidden; background: var(--navy); }
 .listen { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 @media (max-width: 1020px) { .layout { grid-template-columns: 1fr; } .aside { position: static; max-width: 320px; } }
+.layout > * { min-width: 0; }

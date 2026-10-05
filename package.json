@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "check:dashes": "node scripts/check-dashes.mjs"
+    "check:dashes": "node scripts/check-dashes.mjs",
+    "check:links": "node scripts/check-links.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.3.8",

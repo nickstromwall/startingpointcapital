@@ -70,4 +70,7 @@ The build brief (BRIEF.md) is kept out of git because it contains private call n
 
 ```bash
 npm run lint && npx tsc --noEmit && npm run check:dashes && npm run build
+npm run check:links -- https://startingpointcapital.vercel.app --external
 ```
+
+Never load test the live site from your own network: Vercel's DDoS protection will put a security checkpoint in front of your IP for a while. Test locally with `LEAD_PROVIDER=test` so no test leads reach HubSpot.

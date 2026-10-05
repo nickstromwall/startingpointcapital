@@ -235,3 +235,8 @@ textarea.input { padding: 14px 16px; min-height: 120px; resize: vertical; }
   .offset-panel, .offset.reverse .offset-panel { margin: -40px 12px 0; }
   .stat-value { font-size: 2.9rem; }
 }
+
+/* Long emails and URLs must never push a phone layout sideways. */
+.split > *, .grid > *, .offset > * { min-width: 0; }
+.prose, .prose a, .lede, .muted { overflow-wrap: anywhere; }
+.form-row > * { min-width: 0; }
