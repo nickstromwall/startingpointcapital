@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { book, cta, disclaimer, flags, links, reviews, rise48, stats, statsUpdated, taxNote, team } from "@/config/site";
+import { book, cta, disclaimer, flags, links, podcast, reviews, rise48, stats, statsUpdated, taxNote, team } from "@/config/site";
 import AccessForm from "./AccessForm";
 import styles from "./Blocks.module.css";
 
@@ -266,20 +266,22 @@ export function Reviews() {
 }
 
 // Lead magnets in Jeremy's order (Oct 3): Investor Guide first, then the series, the book, and the sales professionals guide.
+// Oct 5: Passive Investing Made Simple and the On the Rise Podcast are separate cards, five in all.
 const RESOURCES = [
   { kind: "Free guide", title: "The Passive Real Estate Investing Guide", body: "A starting point for busy professionals who want cash flow without becoming a landlord.", href: "/guides/investor-guide", img: "/photos/creekside.jpg", alt: "Rise Creekside apartments", link: "Read the guide" },
-  { kind: "Free series", title: "Passive Investing Made Simple", body: "Short lessons that explain one concept at a time, starting with how to read the numbers on a deal.", href: "/resources#made-simple", img: "/photos/podcast.jpg", alt: "On the Rise Podcast with host Jeremy Dyer", link: "Start the series" },
+  { kind: "Free series", title: "Passive Investing Made Simple", body: "Short lessons that explain one concept at a time, starting with how to read the numbers on a deal.", href: "/resources#made-simple", img: "/properties/rise-heather-ridge.jpg", alt: "Rise Heather Ridge apartments", link: "Start the series" },
+  { kind: "The podcast", title: podcast.name, body: "Conversations about building time freedom through passive real estate investing, hosted by Jeremy.", href: "/podcast", img: "/photos/podcast.jpg", alt: "On the Rise Podcast with host Jeremy Dyer", link: "Listen now" },
   { kind: "The book", title: book.title, body: `“${book.endorsement.quote}” ${book.endorsement.by}`, href: book.url, img: "/photos/book.jpg", alt: "The Fundamental Investor by Jeremy Dyer", link: "Order on Amazon", external: true },
   { kind: "Free guide", title: "Passive Real Estate for Sales Professionals", body: "You built a career on pipeline and closing. Here is how to put that capital to work without a second job.", href: "/guides/sales-professionals", img: "/properties/rise-sunridge.jpg", alt: "Rise Sunridge apartments", link: "Read the guide" },
 ];
 
 export function ResourceCards() {
   return (
-    <div className={`${styles.resources} ${styles.resources4}`}>
+    <div className={`${styles.resources} ${styles.resources5}`}>
       {RESOURCES.map((r) => {
         const inner = (
           <>
-            <div className={styles.resourceImg}><Image src={r.img} alt={r.alt} fill sizes="(max-width: 640px) 100vw, (max-width: 1020px) 50vw, 25vw" style={{ objectFit: "cover" }} /></div>
+            <div className={styles.resourceImg}><Image src={r.img} alt={r.alt} fill sizes="(max-width: 640px) 100vw, (max-width: 1020px) 50vw, 20vw" style={{ objectFit: "cover" }} /></div>
             <div className={styles.resourceBody}>
               <span className={styles.resourceKind}>{r.kind}</span>
               <h3>{r.title}</h3>

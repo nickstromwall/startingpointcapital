@@ -41,7 +41,7 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled || open ? styles.solid : ""} ${open ? styles.menuOpen : ""}`}>
       <div className={`wrap ${styles.inner}`}>
         <Link href="/" className={styles.brand} aria-label="Starting Point Capital home" onClick={() => setOpen(false)}>
-          <Image src="/brand/logo-white-notag.png" alt="Starting Point Capital" width={132} height={60} priority />
+          <Image src="/brand/logo-white-notag.png" alt="Starting Point Capital" width={108} height={49} priority />
         </Link>
 
         <nav id="site-nav" className={`${styles.nav} ${open ? styles.open : ""}`} aria-label="Main">
