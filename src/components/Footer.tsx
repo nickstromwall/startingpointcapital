@@ -42,7 +42,6 @@ export default function Footer() {
               <li><Link href="/about">About</Link></li>
               {flags.showPartnerPath ? <li><Link href="/partner">Partner With Us</Link></li> : null}
               <li><Link href="/contact">Contact</Link></li>
-              <li><a href={site.phoneHref}>{site.phone}</a></li>
               <li><a href={`mailto:${site.email}`}>Email us</a></li>
             </ul>
           </div>

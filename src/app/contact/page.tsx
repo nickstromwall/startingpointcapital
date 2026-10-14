@@ -39,7 +39,6 @@ export default function ContactPage() {
               ))}
             </ul>
             <div className={styles.direct}>
-              <p><span>Phone</span><a href={site.phoneHref}>{site.phone}</a></p>
               <p><span>Email</span><a href={`mailto:${site.email}`}>{site.email}</a></p>
               <p><span>Investors</span><a href={links.investorLogin} target="_blank" rel="noopener">Investor portal login</a></p>
             </div>

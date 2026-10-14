@@ -59,7 +59,6 @@ const orgJsonLd = {
   url: site.url,
   logo: `${site.url}/brand/logo-navy.png`,
   email: site.email,
-  telephone: site.phone,
   founder: { "@type": "Person", name: "Jeremy Dyer", sameAs: [links.linkedin] },
   sameAs: [links.linkedin, links.instagram],
 };

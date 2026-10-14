@@ -13,8 +13,6 @@ export const site = {
   description:
     "Starting Point Capital helps busy professionals invest passively in institutional quality multifamily real estate, alongside a team that invests its own money in every deal.",
   email: "jeremy@startingpointcapital.com",
-  phone: "+1 952-200-2173",
-  phoneHref: "tel:+19522002173",
   location: "Lake Elmo, Minnesota",
   emailSignatureTagline: "Multifamily real estate investing. Partner with us on our next deal.",
 };

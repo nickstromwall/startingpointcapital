@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { cta, flags, links, nav, site } from "@/config/site";
+import { cta, flags, links, nav } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import styles from "./Header.module.css";
 
@@ -74,7 +74,6 @@ export default function Header() {
           </div>
           <div className={styles.contact}>
             <Link href={cta.secondary.href} onClick={() => setOpen(false)}>{cta.secondary.label}</Link>
-            <a href={site.phoneHref}>{site.phone}</a>
             <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
           </div>
         </nav>
