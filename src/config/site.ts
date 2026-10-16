@@ -28,9 +28,9 @@ export const cta = {
 };
 
 export const links = {
-  // CONFIRM: the site uses calendly.com/jeremy-rise48equity; Jeremy's email signature uses calendly.com/startingpointcapital.
-  // Consider one routing link for the whole team instead of five separate calendars.
-  calendly: "https://calendly.com/jeremy-rise48equity",
+  // Jeremy's "Discuss Investing with Jeremy" event, the main investor call (confirmed by Nick, Oct 16).
+  // Linking the event itself skips Calendly's event picker so investors land straight on the calendar.
+  calendly: "https://calendly.com/jeremy-rise48equity/discuss-investing-with-jeremy",
   // CONFIRM: a separate Calendly event for capital partner conversations, so those bookings can be counted on their own.
   // Until one exists, partner calls book on Jeremy's main link and are told apart by the GA4 `call_booked` path.
   calendlyPartner: "https://calendly.com/jeremy-rise48equity",
